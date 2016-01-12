@@ -73,13 +73,13 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>標籤</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>關於</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -201,6 +201,143 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-hoisting" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/12/hoisting/" class="article-date">
+  	<time datetime="2016-01-12T02:40:12.000Z" itemprop="datePublished">2016-01-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/12/hoisting/">javascript中的Hoisting(变量提升)(吊装)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>理解hoisting(变量提升)能帮助你更好的组织你的函数作用域。</p>
+<p><strong>要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部</strong></p>
+<p>变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。</p>
+<p>变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doTheThing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ReferenceError: notDeclared is not defined</span></span><br><span class="line">  <span class="comment">// 在全局和函数作用域内，变量notDeclared没有被声明</span></span><br><span class="line">  <span class="built_in">console</span>.log(notDeclared);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 尽管definedLater是在该语句之后声明的，但实际上声明会被提到最顶部</span></span><br><span class="line">  <span class="comment">// 所以这里definedLater是已经被声明，但是还没被定义（赋值）</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line">  <span class="keyword">var</span> definedLater;</span><br><span class="line"></span><br><span class="line">  definedLater = <span class="string">'I am defined!'</span></span><br><span class="line">    <span class="comment">// Outputs: 'I am defined!</span></span><br><span class="line">    <span class="comment">// 这时候已经被赋值了</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 同时定义和声明的情况，注意最后还是被分开</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line">  <span class="keyword">var</span> definedSimulateneously = <span class="string">'I am defined!'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I am defined!'</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I did it!'</span></span><br><span class="line">  <span class="comment">// 函数的定义同样会被提升</span></span><br><span class="line">  doSomethingElse();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doSomethingElse</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">  <span class="comment">// functionVar其实是一个变量，这样就好理解了</span></span><br><span class="line">  <span class="comment">// 这时候functionVar被声明了，但是还没被定义赋值</span></span><br><span class="line">  functionVar();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> functionVar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了使代码可读性更强，将变量的声明都直接放在函数作用域的顶部，就比较清楚变量是来自哪个作用域。<br>在需要使用之前，才定义（赋值）变量。<br>在作用域的地步定义函数，减少对代码阅读的影响</p>
+<blockquote>
+<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-check-property-in-object" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/11/check-property-in-object/" class="article-date">
+  	<time datetime="2016-01-11T02:40:12.000Z" itemprop="datePublished">2016-01-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/11/check-property-in-object/">检查对象中是否存在某个属性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当需要检查某个属性是否在一个对象中时，你可能会像下面这样子做：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    name: 'hello'</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(typeof myObject['name'] !== 'undefined') <span class="decorator">&#123;...&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(myObject['name'])｛...｝</span><br></pre></td></tr></table></figure></p>
+<p>上面的方法没有问题，但是你应该知道有两个原生的方法可以做这类事情，　<code>Object.in</code> 和 <code>Object.hasOwnProperty</code>， 每个对象都是Object的子类，所以都已经有了这两个方法</p>
+<h3 id="u770B_u4E0B_u533A_u522B"><a href="#u770B_u4E0B_u533A_u522B" class="headerlink" title="看下区别"></a>看下区别</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    name: <span class="string">'hello'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myObject.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">//true</span></span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> myObject; <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">myObject.hasOwnProperty(<span class="string">'valueOf'</span>); <span class="comment">//false, valueOf是从原型链中继承过来的</span></span><br><span class="line"></span><br><span class="line"><span class="string">'valueOf'</span> <span class="keyword">in</span> myObject; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>这两个方法在检查属性的深度上有所区别，就是说<code>hasOwnProperty</code>仅仅当待检查的属性是直接属于目标对象时，才会返回<code>true</code>，然而<code>in</code>操作符不会区分属性是对象直接创建的或者还是从原型链中继承来的。</p>
+<p>下面是另一个例子：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFunc = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'hello'</span>;</span><br><span class="line">&#125;;</span><br><span class="line">myFunc.prototype.age = <span class="string">'10 days'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> myFunc();</span><br><span class="line"></span><br><span class="line">user.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">//true</span></span><br><span class="line">user.hasOwnProperty(<span class="string">'age'</span>); <span class="comment">//false, 因为age是来自原型链</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-insert-element-to-array" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -346,67 +483,6 @@
 	<a class="article-category-link" href="/categories/javascript/">javascript</a>
 	</div>
 
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/21/hello-world/" class="article-date">
-  	<time datetime="2015-12-21T01:01:49.729Z" itemprop="datePublished">2015-12-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
 
       
       <div class="clearfix"></div>
