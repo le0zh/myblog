@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>向数组中插入一个元素 | le0zh&#39;s blog</title>
+  <title>在ES6函数中模拟必选参数 | le0zh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
+  <meta name="description" content="在多数编程语言中，函数的参数默认都是必选的，开发者必选要显示的声明参数的可选项。在js中，所有的参数都是可选的。
+但是我们可以利用ES6中的参数默认值的特性，在不改变函数体的情况下确保参数的必选性。
+上代码：12345678 const _err = function( message )&amp;#123;   throw new Error( message ); &amp;#125; const getSu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="向数组中插入一个元素">
-<meta property="og:url" content="http://le0zh.github.io/2016/01/07/insert-element-to-array/index.html">
+<meta property="og:title" content="在ES6函数中模拟必选参数">
+<meta property="og:url" content="http://le0zh.github.io/2016/01/13/pseudomentatory-parameters-in-ES6-functions/index.html">
 <meta property="og:site_name" content="le0zh's blog">
-<meta property="og:description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
-<meta property="og:updated_time" content="2016-01-07T04:48:33.659Z">
+<meta property="og:description" content="在多数编程语言中，函数的参数默认都是必选的，开发者必选要显示的声明参数的可选项。在js中，所有的参数都是可选的。
+但是我们可以利用ES6中的参数默认值的特性，在不改变函数体的情况下确保参数的必选性。
+上代码：12345678 const _err = function( message )&amp;#123;   throw new Error( message ); &amp;#125; const getSu">
+<meta property="og:updated_time" content="2016-01-13T04:17:21.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="向数组中插入一个元素">
-<meta name="twitter:description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
+<meta name="twitter:title" content="在ES6函数中模拟必选参数">
+<meta name="twitter:description" content="在多数编程语言中，函数的参数默认都是必选的，开发者必选要显示的声明参数的可选项。在js中，所有的参数都是可选的。
+但是我们可以利用ES6中的参数默认值的特性，在不改变函数体的情况下确保参数的必选性。
+上代码：12345678 const _err = function( message )&amp;#123;   throw new Error( message ); &amp;#125; const getSu">
   
     <link rel="alternative" href="/atom.xml" title="le0zh&#39;s blog" type="application/atom+xml">
   
@@ -204,11 +207,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-insert-element-to-array" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-pseudomentatory-parameters-in-ES6-functions" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/07/insert-element-to-array/" class="article-date">
-  	<time datetime="2016-01-07T04:40:12.000Z" itemprop="datePublished">2016-01-07</time>
+      <a href="/2016/01/13/pseudomentatory-parameters-in-ES6-functions/" class="article-date">
+  	<time datetime="2016-01-13T02:40:12.000Z" itemprop="datePublished">2016-01-13</time>
 </a>
     </div>
   
@@ -221,7 +224,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      向数组中插入一个元素
+      在ES6函数中模拟必选参数
     </h1>
   
 
@@ -245,19 +248,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A"><a href="#u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A" class="headerlink" title="向现有数组中插入一个元素是经常会见到的一个需求。你可以："></a>向现有数组中插入一个元素是经常会见到的一个需求。你可以：</h3><p>使用<code>push</code>将元素插入到数组的尾部；<br>使用<code>unshift</code>将元素插入到数组的头部；<br>使用<code>splice</code>将元素插入到数组的中间；</p>
-<h3 id="u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A"><a href="#u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A" class="headerlink" title="上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如："></a>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</h3><h4 id="u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A"><a href="#u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A" class="headerlink" title="使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法："></a>使用<code>push</code>很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line">arr[arr.length] = <span class="number">6</span>; <span class="comment">// 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
-<p>两个方法都修改了原有的数组，不相信的话，可以去<a href="http://jsperf.com/push-item-inside-an-array" target="_blank" rel="external">jsperf</a>测试一下。</p>
-<h4 id="u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8"><a href="#u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8" class="headerlink" title="现在我们尝试将元素添加到数组的头部"></a>现在我们尝试将元素添加到数组的头部</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">0</span>);</span><br><span class="line">[<span class="number">0</span>].contact(arr); <span class="comment">//98% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是，<code>unshift</code>修改了原有数组，但是<code>contact</code>是返回一个新的数组，测试在这<a href="http://jsperf.com/unshift-item-inside-an-array" target="_blank" rel="external">jsperf</a></p>
-<h4 id="u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u4E2D_u95F4_u4F7F_u7528splice_uFF0C_u540C_u65F6_u8FD9_u662F_u6700_u5FEB_u7684_u65B9_u6CD5_u4E86"><a href="#u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u4E2D_u95F4_u4F7F_u7528splice_uFF0C_u540C_u65F6_u8FD9_u662F_u6700_u5FEB_u7684_u65B9_u6CD5_u4E86" class="headerlink" title="将元素插入到数组中间使用splice，同时这是最快的方法了"></a>将元素插入到数组中间使用<code>splice</code>，同时这是最快的方法了</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">items</span> = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">items</span>.splice(<span class="built_in">items</span>.length / <span class="number">2</span>, <span class="number">0</span>, <span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure>
-<p><code>splice</code>会修改原有的数组</p>
-<h4 id="splice_u7684_u53C2_u6570_u8BF4_u660E_uFF1A"><a href="#splice_u7684_u53C2_u6570_u8BF4_u660E_uFF1A" class="headerlink" title="splice的参数说明："></a><code>splice</code>的参数说明：</h4><p><code>splice()</code> 方法向/从数组中添加/删除项目，然后返回被删除的项目。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayObject.<span class="function"><span class="title">splice</span><span class="params">(index,howmany,item1,.....,itemX)</span></span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>index    必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</li>
-<li>howmany    必需。要删除的项目数量。如果设置为 0，则不会删除项目。</li>
-<li>item1, …, itemX    可选。向数组添加的新项目。</li>
-</ul>
+        <p>在多数编程语言中，函数的参数默认都是必选的，开发者必选要显示的声明参数的可选项。<br>在js中，所有的参数都是可选的。</p>
+<p>但是我们可以利用<a href="http://exploringjs.com/es6/ch_parameter-handling.html#sec_parameter-default-values" target="_blank" rel="external">ES6中的参数默认值</a>的特性，在不改变函数体的情况下确保参数的必选性。</p>
+<p>上代码：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> const _err = function( message )&#123;</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> Error( message );</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> const getSum = <span class="function"><span class="params">(a = _err(<span class="string">'a is not defined'</span>), b = _err(<span class="string">'b is not defined'</span>))</span> =&gt;</span> a + b</span><br><span class="line"></span><br><span class="line">getSum( <span class="number">10</span> ) <span class="regexp">//</span> throws Error, b <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line">getSum( <span class="literal">undefined</span>, <span class="number">10</span> ) <span class="regexp">//</span> throws Error, a <span class="keyword">is</span> <span class="keyword">not</span> define</span><br></pre></td></tr></table></figure></p>
+<p><code>_err</code>是一个立即抛出异常的函数，当没有给函数中的一个参数赋值时，默认值将被使用，所以<code>_err</code>会被调用同时抛出一个异常。</p>
 <blockquote>
 <p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
 </blockquote>
@@ -270,18 +264,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/01/11/check-property-in-object/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          检查对象中是否存在某个属性
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/06/undefined-and-null/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">undefined和null的区别</div>
+    <a href="/2016/01/12/hoisting/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript中的Hoisting(变量提升)(吊装)</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -316,7 +301,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="insert-element-to-array" data-title="向数组中插入一个元素" data-url="http://le0zh.github.io/2016/01/07/insert-element-to-array/"></div>
+	<div class="ds-thread" data-thread-key="pseudomentatory-parameters-in-ES6-functions" data-title="在ES6函数中模拟必选参数" data-url="http://le0zh.github.io/2016/01/13/pseudomentatory-parameters-in-ES6-functions/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
