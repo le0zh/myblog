@@ -7,18 +7,18 @@
   <title>向数组中插入一个元素 | le0zh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
+上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="向数组中插入一个元素">
 <meta property="og:url" content="http://le0zh.github.io/2016/01/07/insert-element-to-array/index.html">
 <meta property="og:site_name" content="le0zh's blog">
 <meta property="og:description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
-<meta property="og:updated_time" content="2016-01-07T04:48:33.659Z">
+上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：">
+<meta property="og:updated_time" content="2016-01-14T09:59:14.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="向数组中插入一个元素">
 <meta name="twitter:description" content="向现有数组中插入一个元素是经常会见到的一个需求。你可以：使用push将元素插入到数组的尾部；使用unshift将元素插入到数组的头部；使用splice将元素插入到数组的中间；
-上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：1234var arr = [1, 2, 3, 4, 5];arr.p">
+上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：">
   
     <link rel="alternative" href="/atom.xml" title="le0zh&#39;s blog" type="application/atom+xml">
   
@@ -45,7 +45,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">越长大 越&#39;孤单</p>
+		<p class="header-subtitle">越长大 越&#39; 孤单</p>
 		
 
 		
@@ -175,7 +175,7 @@
 			  <h1 class="header-author">le0zh</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">越长大 越&#39;孤单</p>
+			<p class="header-subtitle">越长大 越&#39; 孤单</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -246,7 +246,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A"><a href="#u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A" class="headerlink" title="向现有数组中插入一个元素是经常会见到的一个需求。你可以："></a>向现有数组中插入一个元素是经常会见到的一个需求。你可以：</h3><p>使用<code>push</code>将元素插入到数组的尾部；<br>使用<code>unshift</code>将元素插入到数组的头部；<br>使用<code>splice</code>将元素插入到数组的中间；</p>
-<h3 id="u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A"><a href="#u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A" class="headerlink" title="上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如："></a>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</h3><h4 id="u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A"><a href="#u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A" class="headerlink" title="使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法："></a>使用<code>push</code>很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line">arr[arr.length] = <span class="number">6</span>; <span class="comment">// 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
+<p>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</p>
+<a id="more"></a> 
+<h3 id="u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A"><a href="#u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A" class="headerlink" title="使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法："></a>使用<code>push</code>很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line">arr[arr.length] = <span class="number">6</span>; <span class="comment">// 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
 <p>两个方法都修改了原有的数组，不相信的话，可以去<a href="http://jsperf.com/push-item-inside-an-array" target="_blank" rel="external">jsperf</a>测试一下。</p>
 <h4 id="u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8"><a href="#u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8" class="headerlink" title="现在我们尝试将元素添加到数组的头部"></a>现在我们尝试将元素添加到数组的头部</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">0</span>);</span><br><span class="line">[<span class="number">0</span>].contact(arr); <span class="comment">//98% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
 <p>这里需要注意的是，<code>unshift</code>修改了原有数组，但是<code>contact</code>是返回一个新的数组，测试在这<a href="http://jsperf.com/unshift-item-inside-an-array" target="_blank" rel="external">jsperf</a></p>

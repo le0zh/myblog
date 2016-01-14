@@ -9,8 +9,7 @@
   <meta name="description" content="理解hoisting(变量提升)能帮助你更好的组织你的函数作用域。
 要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部
 变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。
-变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。
-123456789101112131415161718">
+变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript中的Hoisting(变量提升)(吊装)">
 <meta property="og:url" content="http://le0zh.github.io/2016/01/12/hoisting/index.html">
@@ -18,16 +17,14 @@
 <meta property="og:description" content="理解hoisting(变量提升)能帮助你更好的组织你的函数作用域。
 要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部
 变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。
-变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。
-123456789101112131415161718">
-<meta property="og:updated_time" content="2016-01-12T05:27:19.801Z">
+变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。">
+<meta property="og:updated_time" content="2016-01-14T09:58:28.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript中的Hoisting(变量提升)(吊装)">
 <meta name="twitter:description" content="理解hoisting(变量提升)能帮助你更好的组织你的函数作用域。
 要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部
 变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。
-变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。
-123456789101112131415161718">
+变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。">
   
     <link rel="alternative" href="/atom.xml" title="le0zh&#39;s blog" type="application/atom+xml">
   
@@ -54,7 +51,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">越长大 越&#39;孤单</p>
+		<p class="header-subtitle">越长大 越&#39; 孤单</p>
 		
 
 		
@@ -184,7 +181,7 @@
 			  <h1 class="header-author">le0zh</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">越长大 越&#39;孤单</p>
+			<p class="header-subtitle">越长大 越&#39; 孤单</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -258,6 +255,7 @@
 <p><strong>要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部</strong></p>
 <p>变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。</p>
 <p>变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。</p>
+<a id="more"></a> 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doTheThing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ReferenceError: notDeclared is not defined</span></span><br><span class="line">  <span class="comment">// 在全局和函数作用域内，变量notDeclared没有被声明</span></span><br><span class="line">  <span class="built_in">console</span>.log(notDeclared);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 尽管definedLater是在该语句之后声明的，但实际上声明会被提到最顶部</span></span><br><span class="line">  <span class="comment">// 所以这里definedLater是已经被声明，但是还没被定义（赋值）</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line">  <span class="keyword">var</span> definedLater;</span><br><span class="line"></span><br><span class="line">  definedLater = <span class="string">'I am defined!'</span></span><br><span class="line">    <span class="comment">// Outputs: 'I am defined!</span></span><br><span class="line">    <span class="comment">// 这时候已经被赋值了</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 同时定义和声明的情况，注意最后还是被分开</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line">  <span class="keyword">var</span> definedSimulateneously = <span class="string">'I am defined!'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I am defined!'</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I did it!'</span></span><br><span class="line">  <span class="comment">// 函数的定义同样会被提升</span></span><br><span class="line">  doSomethingElse();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doSomethingElse</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">  <span class="comment">// functionVar其实是一个变量，这样就好理解了</span></span><br><span class="line">  <span class="comment">// 这时候functionVar被声明了，但是还没被定义赋值</span></span><br><span class="line">  functionVar();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> functionVar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>为了使代码可读性更强，将变量的声明都直接放在函数作用域的顶部，就比较清楚变量是来自哪个作用域。<br>在需要使用之前，才定义（赋值）变量。<br>在作用域的地步定义函数，减少对代码阅读的影响</p>
 <blockquote>

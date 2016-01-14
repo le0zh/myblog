@@ -41,7 +41,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">越长大 越&#39;孤单</p>
+		<p class="header-subtitle">越长大 越&#39; 孤单</p>
 		
 
 		
@@ -171,7 +171,7 @@
 			  <h1 class="header-author">le0zh</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">越长大 越&#39;孤单</p>
+			<p class="header-subtitle">越长大 越&#39; 孤单</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -202,6 +202,84 @@
 
       <div class="body-wrap">
   
+    <article id="post-navigator-in-react-native" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/14/navigator-in-react-native/" class="article-date">
+  	<time datetime="2016-01-14T09:40:12.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/14/navigator-in-react-native/">react-native中navigator的基本使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录在react-native中navigator的基本使用，解决了页面间如何切换的问题。</p>
+<blockquote>
+<p>注： 本文是windows环境下开发android</p>
+</blockquote>
+<p>首先，官方文档地址如下：<br><a href="http://facebook.github.io/react-native/docs/navigator.html#content">http://facebook.github.io/react-native/docs/navigator.html#content</a></p>
+<p>从官方文档可以看到navigator的基本用法如下：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;Navigator</span><br><span class="line">  initialRoute=&#123;&#123;name: <span class="string">'My First Scene'</span>, index: <span class="number">0</span>&#125;&#125;</span><br><span class="line">  renderScene=&#123;(route, navigator) =&gt;</span><br><span class="line">    &lt;MySceneComponent</span><br><span class="line">      name=&#123;route.name&#125;</span><br><span class="line">      onForward=&#123;() =&gt; &#123;</span><br><span class="line">        var nextIndex = route.index + <span class="number">1</span>;</span><br><span class="line">        navigator.push(&#123;</span><br><span class="line">          name: <span class="string">'Scene '</span> + nextIndex,</span><br><span class="line">          index: nextIndex,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;&#125;</span><br><span class="line">      onBack=&#123;() =&gt; &#123;</span><br><span class="line">        if (route.index &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          navigator.pop();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  &#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>从中可以看到两个最基本和必须的属性如下：</p>
+<ul>
+<li><code>initialRoute</code> : 该属性指明了一开始的初始路由，即app加载时第一次要展现什么内容</li>
+<li><code>renderScene</code> : 渲染场景函数，根据<code>route</code>参数确定显示哪些内容</li>
+</ul>
+<p>另外还经常会用到的可选属性有：</p>
+<ul>
+<li><code>configureScene</code>: 场景配置函数，允许配置场景相关的动画和手势</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/react-native/">react-native</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/14/navigator-in-react-native/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-watcher-took-too-long-to-load" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -230,13 +308,6 @@
       
         <h3 id="u95EE_u9898_3A"><a href="#u95EE_u9898_3A" class="headerlink" title="问题:"></a>问题:</h3><p>在windows下，使用<code>react-native init projectname</code>之后，使用<code>react-native start</code>命令，过一段时间之后，报错误如下：</p>
 <p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/656f3641-c4c4-4301-a393-45edd016637e.png" alt="截图"></p>
-<h3 id="u89E3_u51B3_u529E_u6CD5_uFF1A"><a href="#u89E3_u51B3_u529E_u6CD5_uFF1A" class="headerlink" title="解决办法："></a>解决办法：</h3><p>参考：<br><a href="http://facebook.github.io/react-native/docs/linux-windows-support.html#content" target="_blank" rel="external">http://facebook.github.io/react-native/docs/linux-windows-support.html#content</a></p>
-<p>打开文件<br><code>node_modules\react-native\packager\react-packager\src\FileWatcher\index.js</code></p>
-<p>增加等待时间，我这里是加了个0。</p>
-<p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/2b8e89d1-d53b-465e-8192-ed239f040fa6.png" alt="截图"></p>
-<p>保存之后再运行<code>react-native start</code></p>
-<p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/15125506-cdf6-409e-bad7-9057f114c0a2.png" alt="截图"></p>
-
       
     </div>
     
@@ -253,6 +324,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/14/watcher-took-too-long-to-load/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -367,12 +442,6 @@
 <p><strong>要时刻记住，变量的声明和函数定义会被提升(hoisting)到函数作用域的顶部</strong></p>
 <p>变量的定义(definition)不会被提升，即使你是在同一行同时声明和定义一个变量。</p>
 <p>变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doTheThing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ReferenceError: notDeclared is not defined</span></span><br><span class="line">  <span class="comment">// 在全局和函数作用域内，变量notDeclared没有被声明</span></span><br><span class="line">  <span class="built_in">console</span>.log(notDeclared);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 尽管definedLater是在该语句之后声明的，但实际上声明会被提到最顶部</span></span><br><span class="line">  <span class="comment">// 所以这里definedLater是已经被声明，但是还没被定义（赋值）</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line">  <span class="keyword">var</span> definedLater;</span><br><span class="line"></span><br><span class="line">  definedLater = <span class="string">'I am defined!'</span></span><br><span class="line">    <span class="comment">// Outputs: 'I am defined!</span></span><br><span class="line">    <span class="comment">// 这时候已经被赋值了</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedLater);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: undefined</span></span><br><span class="line">  <span class="comment">// 同时定义和声明的情况，注意最后还是被分开</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line">  <span class="keyword">var</span> definedSimulateneously = <span class="string">'I am defined!'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I am defined!'</span></span><br><span class="line">  <span class="built_in">console</span>.log(definedSimulateneously);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Outputs: 'I did it!'</span></span><br><span class="line">  <span class="comment">// 函数的定义同样会被提升</span></span><br><span class="line">  doSomethingElse();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doSomethingElse</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">  <span class="comment">// functionVar其实是一个变量，这样就好理解了</span></span><br><span class="line">  <span class="comment">// 这时候functionVar被声明了，但是还没被定义赋值</span></span><br><span class="line">  functionVar();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> functionVar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I did it!'</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为了使代码可读性更强，将变量的声明都直接放在函数作用域的顶部，就比较清楚变量是来自哪个作用域。<br>在需要使用之前，才定义（赋值）变量。<br>在作用域的地步定义函数，减少对代码阅读的影响</p>
-<blockquote>
-<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
-</blockquote>
-
       
     </div>
     
@@ -389,6 +458,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/12/hoisting/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -434,13 +507,6 @@
       
         <p>当需要检查某个属性是否在一个对象中时，你可能会像下面这样子做：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    name: 'hello'</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(typeof myObject['name'] !== 'undefined') <span class="decorator">&#123;...&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(myObject['name'])｛...｝</span><br></pre></td></tr></table></figure></p>
 <p>上面的方法没有问题，但是你应该知道有两个原生的方法可以做这类事情，　<code>Object.in</code> 和 <code>Object.hasOwnProperty</code>， 每个对象都是Object的子类，所以都已经有了这两个方法</p>
-<h3 id="u770B_u4E0B_u533A_u522B"><a href="#u770B_u4E0B_u533A_u522B" class="headerlink" title="看下区别"></a>看下区别</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    name: <span class="string">'hello'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myObject.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">//true</span></span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> myObject; <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">myObject.hasOwnProperty(<span class="string">'valueOf'</span>); <span class="comment">//false, valueOf是从原型链中继承过来的</span></span><br><span class="line"></span><br><span class="line"><span class="string">'valueOf'</span> <span class="keyword">in</span> myObject; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>这两个方法在检查属性的深度上有所区别，就是说<code>hasOwnProperty</code>仅仅当待检查的属性是直接属于目标对象时，才会返回<code>true</code>，然而<code>in</code>操作符不会区分属性是对象直接创建的或者还是从原型链中继承来的。</p>
-<p>下面是另一个例子：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFunc = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'hello'</span>;</span><br><span class="line">&#125;;</span><br><span class="line">myFunc.prototype.age = <span class="string">'10 days'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> myFunc();</span><br><span class="line"></span><br><span class="line">user.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">//true</span></span><br><span class="line">user.hasOwnProperty(<span class="string">'age'</span>); <span class="comment">//false, 因为age是来自原型链</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
-</blockquote>
-
       
     </div>
     
@@ -457,6 +523,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/11/check-property-in-object/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -501,22 +571,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A"><a href="#u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A" class="headerlink" title="向现有数组中插入一个元素是经常会见到的一个需求。你可以："></a>向现有数组中插入一个元素是经常会见到的一个需求。你可以：</h3><p>使用<code>push</code>将元素插入到数组的尾部；<br>使用<code>unshift</code>将元素插入到数组的头部；<br>使用<code>splice</code>将元素插入到数组的中间；</p>
-<h3 id="u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A"><a href="#u4E0A_u9762_u90A3_u4E9B_u65B9_u6CD5_u90FD_u662F_u5E38_u89C1_u7684_u65B9_u6CD5_uFF0C_u4F46_u5E76_u4E0D_u610F_u5473_u7740_u6CA1_u6709_u6027_u80FD_u66F4_u597D_u7684_u65B9_u6CD5_uFF0C_u6BD4_u5982_uFF1A" class="headerlink" title="上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如："></a>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</h3><h4 id="u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A"><a href="#u4F7F_u7528push_u5F88_u5BB9_u6613_u5C31_u80FD_u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u5C3E_u90E8_uFF0C_u4F46_u662F_u8FD8_u6709_u4E00_u4E2A_u66F4_u5FEBperformant_u7684_u65B9_u6CD5_uFF1A" class="headerlink" title="使用push很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法："></a>使用<code>push</code>很容易就能将元素插入到数组尾部，但是还有一个更快performant的方法：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line">arr[arr.length] = <span class="number">6</span>; <span class="comment">// 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
-<p>两个方法都修改了原有的数组，不相信的话，可以去<a href="http://jsperf.com/push-item-inside-an-array" target="_blank" rel="external">jsperf</a>测试一下。</p>
-<h4 id="u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8"><a href="#u73B0_u5728_u6211_u4EEC_u5C1D_u8BD5_u5C06_u5143_u7D20_u6DFB_u52A0_u5230_u6570_u7EC4_u7684_u5934_u90E8" class="headerlink" title="现在我们尝试将元素添加到数组的头部"></a>现在我们尝试将元素添加到数组的头部</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">0</span>);</span><br><span class="line">[<span class="number">0</span>].contact(arr); <span class="comment">//98% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是，<code>unshift</code>修改了原有数组，但是<code>contact</code>是返回一个新的数组，测试在这<a href="http://jsperf.com/unshift-item-inside-an-array" target="_blank" rel="external">jsperf</a></p>
-<h4 id="u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u4E2D_u95F4_u4F7F_u7528splice_uFF0C_u540C_u65F6_u8FD9_u662F_u6700_u5FEB_u7684_u65B9_u6CD5_u4E86"><a href="#u5C06_u5143_u7D20_u63D2_u5165_u5230_u6570_u7EC4_u4E2D_u95F4_u4F7F_u7528splice_uFF0C_u540C_u65F6_u8FD9_u662F_u6700_u5FEB_u7684_u65B9_u6CD5_u4E86" class="headerlink" title="将元素插入到数组中间使用splice，同时这是最快的方法了"></a>将元素插入到数组中间使用<code>splice</code>，同时这是最快的方法了</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">items</span> = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">items</span>.splice(<span class="built_in">items</span>.length / <span class="number">2</span>, <span class="number">0</span>, <span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure>
-<p><code>splice</code>会修改原有的数组</p>
-<h4 id="splice_u7684_u53C2_u6570_u8BF4_u660E_uFF1A"><a href="#splice_u7684_u53C2_u6570_u8BF4_u660E_uFF1A" class="headerlink" title="splice的参数说明："></a><code>splice</code>的参数说明：</h4><p><code>splice()</code> 方法向/从数组中添加/删除项目，然后返回被删除的项目。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayObject.<span class="function"><span class="title">splice</span><span class="params">(index,howmany,item1,.....,itemX)</span></span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>index    必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</li>
-<li>howmany    必需。要删除的项目数量。如果设置为 0，则不会删除项目。</li>
-<li>item1, …, itemX    可选。向数组添加的新项目。</li>
-</ul>
-<blockquote>
-<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
-</blockquote>
-
+<p>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</p>
       
     </div>
     
@@ -533,6 +588,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/07/insert-element-to-array/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -587,22 +646,8 @@
 </li>
 <li><code>undefined</code>的类型（typeof）是<code>undefined</code></li>
 <li><code>null</code>的类型（typeof）是<code>object</code></li>
-<li><p>两个都是基本数据类型</p>
-</li>
-<li><p>判断一个变量是<code>undefined</code>的方法：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span>(variable) === <span class="string">'undefined'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断一个变量是<code>null</code>的方法:</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">variable</span> === <span class="built_in">null</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>相等性：(The equility operator consider them equal, but the identity doesn’t):</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>两个都是基本数据类型</li>
 </ul>
-<blockquote>
-<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
-</blockquote>
-
       
     </div>
     
@@ -619,6 +664,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/06/undefined-and-null/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
