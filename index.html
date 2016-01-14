@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/jstips/" style="font-size: 10px;">jstips</a>
+						<a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 15px;">jstips</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a>
 					</div>
 				</section>
 				
@@ -201,6 +201,74 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-watcher-took-too-long-to-load" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/14/watcher-took-too-long-to-load/" class="article-date">
+  	<time datetime="2016-01-14T02:40:12.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/14/watcher-took-too-long-to-load/">react-native在windows下Watcher took too long to load的错误解决</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u95EE_u9898_3A"><a href="#u95EE_u9898_3A" class="headerlink" title="问题:"></a>问题:</h3><p>在windows下，使用<code>react-native init projectname</code>之后，使用<code>react-native start</code>命令，过一段时间之后，报错误如下：</p>
+<p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/656f3641-c4c4-4301-a393-45edd016637e.png" alt="截图"></p>
+<h3 id="u89E3_u51B3_u529E_u6CD5_uFF1A"><a href="#u89E3_u51B3_u529E_u6CD5_uFF1A" class="headerlink" title="解决办法："></a>解决办法：</h3><p>参考：<br><a href="http://facebook.github.io/react-native/docs/linux-windows-support.html#content" target="_blank" rel="external">http://facebook.github.io/react-native/docs/linux-windows-support.html#content</a></p>
+<p>打开文件<br><code>node_modules\react-native\packager\react-packager\src\FileWatcher\index.js</code></p>
+<p>增加等待时间，我这里是加了个0。</p>
+<p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/2b8e89d1-d53b-465e-8192-ed239f040fa6.png" alt="截图"></p>
+<p>保存之后再运行<code>react-native start</code></p>
+<p><img src="http://7xl2vf.com1.z0.glb.clouddn.com/15125506-cdf6-409e-bad7-9057f114c0a2.png" alt="截图"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/react-native/">react-native</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-pseudomentatory-parameters-in-ES6-functions" class="article article-type-post" itemscope itemprop="blogPost">
   
