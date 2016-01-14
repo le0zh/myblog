@@ -15,6 +15,8 @@ date: 2016-01-12 10:40:12
 
 变量声明(declaration)是让系统知道某个变量的存在，而变量定义(definiton)是给变量赋值。
 
+<!-- more --> 
+
 ```
 function doTheThing() {
   // ReferenceError: notDeclared is not defined

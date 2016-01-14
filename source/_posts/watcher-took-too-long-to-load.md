@@ -12,6 +12,8 @@ date: 2016-01-14 10:40:12
 
 ![截图](http://7xl2vf.com1.z0.glb.clouddn.com/656f3641-c4c4-4301-a393-45edd016637e.png)
 
+<!-- more --> 
+
 ### 解决办法：
 参考： 
 http://facebook.github.io/react-native/docs/linux-windows-support.html#content

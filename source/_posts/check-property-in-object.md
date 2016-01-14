@@ -20,6 +20,8 @@ if(myObject['name'])｛...｝
 
 上面的方法没有问题，但是你应该知道有两个原生的方法可以做这类事情，　`Object.in` 和 `Object.hasOwnProperty`， 每个对象都是Object的子类，所以都已经有了这两个方法
 
+<!-- more --> 
+
 ### 看下区别
 ```
 var myObject = {

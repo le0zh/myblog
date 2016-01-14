@@ -18,6 +18,8 @@ date: 2016-01-06 10:40:12
 + `null`的类型（typeof）是`object`
 + 两个都是基本数据类型
 
+<!-- more -->
+
 + 判断一个变量是`undefined`的方法：
 ```
 typeof(variable) === 'undefined'
