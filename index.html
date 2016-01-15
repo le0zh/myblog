@@ -73,13 +73,13 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>標籤</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>關於</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -201,6 +201,76 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-drawer-in-react-natvie" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/15/drawer-in-react-natvie/" class="article-date">
+  	<time datetime="2016-01-15T05:40:12.000Z" itemprop="datePublished">2016-01-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/15/drawer-in-react-natvie/">react-native中DrawerLayoutAndroid的基本使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录在react-native中DrawerLayoutAndroid的基本使用，主要是为了解决导航菜单显示问题。</p>
+<blockquote>
+<p>本文做练习用的工程来自上一篇文章 <a href="http://le0zh.github.io/2016/01/14/navigator-in-react-native/">react-native中navigator的基本使用</a></p>
+</blockquote>
+<p>首先，官方文档地址如下：<br><a href="http://facebook.github.io/react-native/docs/drawerlayoutandroid.html#content">http://facebook.github.io/react-native/docs/drawerlayoutandroid.html#content</a></p>
+<p><code>DrawerLayoutAndroid</code>组件通过其名字就能知道，只能在android系统上使用(好像是废话)。<br>该组件使用<code>renderNavigationView</code>方法来渲染Drawer(一般用来导航)。<br>该组件的直接子元素是主视图，用来显示内容。</p>
+<p>在一开始，导航视图是被隐藏的，但是可以被从窗体的侧边拉出来(是的，就像抽屉一样)，具体的从窗体哪个方向拉，可以通过<code>drawerPosition</code>属性指定，同时拉出来的宽度(抽屉的深度)可以通过<code>drawerWidth</code>属性指定。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/react-native/">react-native</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/15/drawer-in-react-natvie/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-navigator-in-react-native" class="article article-type-post" itemscope itemprop="blogPost">
   
