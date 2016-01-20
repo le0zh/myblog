@@ -4,42 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>undefined和null的区别 | le0zh&#39;s blog</title>
+  <title>测量js代码块性能的小技巧 | le0zh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="undefined是说一个变量没有被声明，或者被声明了但是还没有被赋值
-
-null是一个特定值(an assignment value )，代表“没有值”(no value)
-
-JavaScript会将没有被赋值的变量默认设为undefined
-
-JavaScript绝对不自动将一个变量设置为null值，也就是说null都是程序员手动设置用来说明一个变量没有值的
-
-undefined的类型（typ">
+  <meta name="description" content="为了能据快速的测量javascript代码块的性能，我们可以使用console的两个函数：console.time(label)console.timeEnd(label)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="undefined和null的区别">
-<meta property="og:url" content="http://le0zh.github.io/2016/01/06/undefined-and-null/index.html">
+<meta property="og:title" content="测量js代码块性能的小技巧">
+<meta property="og:url" content="http://le0zh.github.io/2016/01/20/tip-to-measure-performance-of-a-js-block/index.html">
 <meta property="og:site_name" content="le0zh's blog">
-<meta property="og:description" content="undefined是说一个变量没有被声明，或者被声明了但是还没有被赋值
-
-null是一个特定值(an assignment value )，代表“没有值”(no value)
-
-JavaScript会将没有被赋值的变量默认设为undefined
-
-JavaScript绝对不自动将一个变量设置为null值，也就是说null都是程序员手动设置用来说明一个变量没有值的
-
-undefined的类型（typ">
-<meta property="og:updated_time" content="2016-01-14T09:59:40.488Z">
+<meta property="og:description" content="为了能据快速的测量javascript代码块的性能，我们可以使用console的两个函数：console.time(label)console.timeEnd(label)">
+<meta property="og:updated_time" content="2016-01-20T01:38:43.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="undefined和null的区别">
-<meta name="twitter:description" content="undefined是说一个变量没有被声明，或者被声明了但是还没有被赋值
-
-null是一个特定值(an assignment value )，代表“没有值”(no value)
-
-JavaScript会将没有被赋值的变量默认设为undefined
-
-JavaScript绝对不自动将一个变量设置为null值，也就是说null都是程序员手动设置用来说明一个变量没有值的
-
-undefined的类型（typ">
+<meta name="twitter:title" content="测量js代码块性能的小技巧">
+<meta name="twitter:description" content="为了能据快速的测量javascript代码块的性能，我们可以使用console的两个函数：console.time(label)console.timeEnd(label)">
   
     <link rel="alternative" href="/atom.xml" title="le0zh&#39;s blog" type="application/atom+xml">
   
@@ -179,11 +155,11 @@ undefined的类型（typ">
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-undefined-and-null" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-tip-to-measure-performance-of-a-js-block" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/06/undefined-and-null/" class="article-date">
-  	<time datetime="2016-01-06T02:40:12.000Z" itemprop="datePublished">2016-01-06</time>
+      <a href="/2016/01/20/tip-to-measure-performance-of-a-js-block/" class="article-date">
+  	<time datetime="2016-01-20T02:40:12.000Z" itemprop="datePublished">2016-01-20</time>
 </a>
     </div>
   
@@ -196,7 +172,7 @@ undefined的类型（typ">
         
   
     <h1 class="article-title" itemprop="name">
-      undefined和null的区别
+      测量js代码块性能的小技巧
     </h1>
   
 
@@ -220,31 +196,11 @@ undefined的类型（typ">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p><code>undefined</code>是说一个变量没有被声明，或者被声明了但是还没有被赋值</p>
-</li>
-<li><p><code>null</code>是一个特定值(an assignment value )，代表“没有值”(no value)</p>
-</li>
-<li><p>JavaScript会将没有被赋值的变量默认设为<code>undefined</code></p>
-</li>
-<li><p>JavaScript绝对不自动将一个变量设置为<code>null</code>值，也就是说<code>null</code>都是程序员手动设置用来说明一个变量没有值的</p>
-</li>
-<li><code>undefined</code>的类型（typeof）是<code>undefined</code></li>
-<li><code>null</code>的类型（typeof）是<code>object</code></li>
-<li>两个都是基本数据类型</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><p>判断一个变量是<code>undefined</code>的方法：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span>(variable) === <span class="string">'undefined'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断一个变量是<code>null</code>的方法:</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">variable</span> === <span class="built_in">null</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>相等性：(The equility operator consider them equal, but the identity doesn’t):</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+        <p>为了能据快速的测量javascript代码块的性能，我们可以使用<code>console</code>的两个函数：<br><a href="https://developer.chrome.com/devtools/docs/console-api#consoletimelabel" target="_blank" rel="external">console.time(label)</a><br><a href="https://developer.chrome.com/devtools/docs/console-api#consoletimeendlabel" target="_blank" rel="external">console.timeEnd(label)</a></p>
+<a id="more"></a> 
+<p>示例代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.time(<span class="string">'Array initialize'</span>);</span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> len = arr.length;</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    arr[i] = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'Array initialize'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Outputs: Array initialize: 0.711ms</span></span><br></pre></td></tr></table></figure></p>
+<p>更多参考: <a href="https://github.com/DeveloperToolsWG/console-object" target="_blank" rel="external">Console object</a> <a href="https://mathiasbynens.be/notes/javascript-benchmarking" target="_blank" rel="external">Javascript benchmarking</a></p>
+<p>Demo: <a href="https://jsfiddle.net/meottb62/" target="_blank" rel="external">jsfiddle</a> <a href="http://codepen.io/anon/pen/JGJPoa" target="_blank" rel="external">codepen</a></p>
 <blockquote>
 <p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
 </blockquote>
@@ -257,15 +213,11 @@ undefined的类型（typ">
     
 <nav id="article-nav">
   
-    <a href="/2016/01/07/insert-element-to-array/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          向数组中插入一个元素
-        
-      </div>
-    </a>
   
+    <a href="/2016/01/15/drawer-in-react-natvie/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react-native中DrawerLayoutAndroid的基本使用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -298,7 +250,7 @@ undefined的类型（typ">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined-and-null" data-title="undefined和null的区别" data-url="http://le0zh.github.io/2016/01/06/undefined-and-null/"></div>
+	<div class="ds-thread" data-thread-key="tip-to-measure-performance-of-a-js-block" data-title="测量js代码块性能的小技巧" data-url="http://le0zh.github.io/2016/01/20/tip-to-measure-performance-of-a-js-block/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
