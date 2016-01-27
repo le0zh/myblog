@@ -59,6 +59,109 @@ public Text waveLabel;
 public GameObject[] nextWaveLabels;
 ```
 
+其中`waveLabel`是在屏幕右上角显示当前波数的对象引用，`nextWaveLabels`中有连个游戏对象，组合来制作当新的一波敌人开始时的的动画，就像下面这样:
+![gif](http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/nextWaveAnimation.gif)
+
+保存脚本文件，返回Unity，在Hierarcy面板选中GameManager，点击WaveLabel右侧的小圆形按钮，在 Select Text对话框中选中Scene标签页下的WaveLabel。
+![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/gameManager-with-waves.png)
+
+如果玩家游戏失败了，他不应该看到下一波的信息，为了解决这个问题，回到GameManagerBehavior.cs脚本并添加下面的另一个变量:
+```
+public bool gameOver = false;
+```
+
+我们将使用`gameOver`来记录玩家是否已经游戏失败。
+
+同样，我们将使用属性来保持游戏中的元素在当前回合中的一致性，在GameManagerBehavior中添加下面的代码:
+```
+private int wave;
+
+public int Wave
+{
+    get { return wave; }
+    set
+    {
+        wave = value;
+        if (!gameOver)
+        {
+            for (int i = 0; i < nextWaveLabels.Length; i++)
+            {
+                nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
+            }
+        }
+        waveLabel.text = "WAVE: " + (wave + 1);
+    }
+}
+```
+
+上面创建私有变量、属性、getter方法都是常规的方法，但是再一次的，setter方法有些特殊：
++ 我们使用新的`value`更新`wave`
++ 然后检查游戏是已经结束，如果还没有结束，则遍历`nextWaveLabels`（包含Animatro组件的label集合），触发nextWave的动画
++ 最后，设置waveLabel的显示文本为`wave + 1`，为什么要加1，因为普通玩家不会从0开始数，你懂得。
+
+在`Start()`方法中，设置属性的值:
+```
+Wave = 0;
+```
+
+我们从0开始计数`Wave`。
+保存脚本文件，在Unity中运行游戏，现在波数应该能正常的显示为从1开始:
+![img](http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/counting-waves.png)
+
+
+### 让敌人来的更猛烈些
+目前，我们还不能创建更多的敌人，同时，我们不能再当前波的敌人被消灭完之前，召唤出下一波的敌人，至少现在不能。
+
+所以，游戏必须要能区分出当前游戏场景中是否存在敌人，这里Tags是个非常好的用来区分游戏对象的方法。
+
+#### 给敌人打上标签(Tags)
+在Project Browser中选中Enemy prefab，在Inspector面板的顶部，点击Tag下拉框并选中添加Tag（Add Tag）
+![img](http://cdn3.raywenderlich.com/wp-content/uploads/2015/06/Create-Tag.png)
+
+创建一个名为Enemy的Tag
+![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-03.55.00.png)
+
+选中Enemy prefab，在Inspector面板中设置其Tag为新创建的Enemy。
+
+#### 定义Waves
+现在我们需要定义一波的敌人了，在代码编辑器中打开SpawnEnemy.cs，在类`SpawnEnemy`之前增加下面的定义 ：
+```
+[System.Serializable]
+public class Wave
+{
+    public GameObject enemyPrefab;
+    public float spawnInterval = 2;
+    public int maxEnemies = 20;
+}
+```
+`Wave`中有一个`enemyPrefab`，是用来实例化敌人的基础，`spawnInterval`用来指定创建敌人的间隔，`maxEnemies`指定一波敌人的最大数量。
+
+上面这个类是可序列化的，意味着我们可以在Inspector中改变它的值。
+向`SpawnEnemy`类中添加下面的变量 ：
+```
+public Wave[] waves;
+public int timeBetweenWaves = 5;
+
+private GameManagerBehavior gameManager;
+
+private float lastSpawnTime;
+private int enemiesSpawned = 0;
+```
+
+这里设置了一些用来召唤敌人的变量，跟我们用来使敌人沿着路标移动的那些很相似。我们将在`waves`中定义游戏中的各个回合的敌人信息，使用`enemiesSpawned`和`lastSpawnTime`记录已经召唤出来的敌人个数和召唤的时间。
+
+玩家需要再杀死一波的敌人之后休息一下，所以设置`timeBetweenWaves`为5秒。
+
+在`Start()`方法中增加下面的内容:
+```
+lastSpawnTime = Time.time;
+gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+```
+这里我们设置了`lastSpawnTime`为当前时间，也就是当场景加载完毕脚本开始的时间。
+然后我们用了之前的方式拿到GameManagerBehavior的引用。
+
+
+
 
 
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
