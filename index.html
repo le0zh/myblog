@@ -63,7 +63,7 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
+						<li>Menu</li>
 						<li>Tags</li>
 						
 						
@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 16.67px;">jstips</a> <a href="/tags/react-native/" style="font-size: 13.33px;">react-native</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 16.67px;">jstips</a> <a href="/tags/react-native/" style="font-size: 13.33px;">react-native</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
 					</div>
 				</section>
 				
@@ -155,6 +155,73 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-template-strings" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/27/template-strings/" class="article-date">
+  	<time datetime="2016-01-27T02:40:12.000Z" itemprop="datePublished">2016-01-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/27/template-strings/">ES6 template string模板字符串</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在ES6中，JS除了传统的字符串，提供了新的template string模板字符串。</p>
+<p>Ex：普通的字符串:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Jake'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Rawr'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'My name is '</span> + firstName + <span class="string">' '</span> + lastName);</span><br><span class="line"><span class="comment">// My name is Jake Rawr</span></span><br></pre></td></tr></table></figure>
+<p>template string模板字符串:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Jake'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Rawr'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;firstName&#125;</span> <span class="subst">$&#123;lastName&#125;</span>`</span>);</span><br><span class="line"><span class="comment">// My name is Jake Rawr</span></span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/27/template-strings/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-create-tower-defense-game-unity-part-1" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -768,82 +835,10 @@
 
 
   
-    <article id="post-undefined-and-null" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/01/06/undefined-and-null/" class="article-date">
-  	<time datetime="2016-01-06T02:40:12.000Z" itemprop="datePublished">2016-01-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/06/undefined-and-null/">undefined和null的区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p><code>undefined</code>是说一个变量没有被声明，或者被声明了但是还没有被赋值</p>
-</li>
-<li><p><code>null</code>是一个特定值(an assignment value )，代表“没有值”(no value)</p>
-</li>
-<li><p>JavaScript会将没有被赋值的变量默认设为<code>undefined</code></p>
-</li>
-<li><p>JavaScript绝对不自动将一个变量设置为<code>null</code>值，也就是说<code>null</code>都是程序员手动设置用来说明一个变量没有值的</p>
-</li>
-<li><code>undefined</code>的类型（typeof）是<code>undefined</code></li>
-<li><code>null</code>的类型（typeof）是<code>object</code></li>
-<li>两个都是基本数据类型</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/javascript/">javascript</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/06/undefined-and-null/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
