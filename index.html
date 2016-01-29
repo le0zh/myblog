@@ -63,8 +63,8 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
+						<li>菜单</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 16.67px;">jstips</a> <a href="/tags/react-native/" style="font-size: 13.33px;">react-native</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 16.67px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 13.33px;">react-native</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
 					</div>
 				</section>
 				
@@ -155,6 +155,71 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-keys-in-children-components-are-important" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/28/keys-in-children-components-are-important/" class="article-date">
+  	<time datetime="2016-01-28T02:40:12.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/28/keys-in-children-components-are-important/">react中子组件的keys很重要</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里所说的<a href="https://facebook.github.io/react/docs/multiple-components.html#dynamic-children">key</a>是指当使用数组动态创建组件时需要指定的属性。它是一个唯一并且不变的id，React用来区分每个组件的DOM，并且当和另一个组件比较时，可以知道是不同的组件还是相同的。</p>
+<p>使用keys可以确保子组件的重用而不是重新创建，从而避免一些奇怪的事情发生。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/28/keys-in-children-components-are-important/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-template-strings" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -752,71 +817,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/01/11/check-property-in-object/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-insert-element-to-array" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/07/insert-element-to-array/" class="article-date">
-  	<time datetime="2016-01-07T04:40:12.000Z" itemprop="datePublished">2016-01-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/07/insert-element-to-array/">向数组中插入一个元素</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A"><a href="#u5411_u73B0_u6709_u6570_u7EC4_u4E2D_u63D2_u5165_u4E00_u4E2A_u5143_u7D20_u662F_u7ECF_u5E38_u4F1A_u89C1_u5230_u7684_u4E00_u4E2A_u9700_u6C42_u3002_u4F60_u53EF_u4EE5_uFF1A" class="headerlink" title="向现有数组中插入一个元素是经常会见到的一个需求。你可以："></a>向现有数组中插入一个元素是经常会见到的一个需求。你可以：</h3><p>使用<code>push</code>将元素插入到数组的尾部；<br>使用<code>unshift</code>将元素插入到数组的头部；<br>使用<code>splice</code>将元素插入到数组的中间；</p>
-<p>上面那些方法都是常见的方法，但并不意味着没有性能更好的方法，比如：</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/javascript/">javascript</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/07/insert-element-to-array/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
