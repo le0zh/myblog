@@ -160,6 +160,51 @@ gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>()
 这里我们设置了`lastSpawnTime`为当前时间，也就是当场景加载完毕脚本开始的时间。
 然后我们用了之前的方式拿到GameManagerBehavior的引用。
 
+在`Update()`方法中添加下面的代码：
+```
+//1 拿到当前波数的索引，并检查是否是最后的回合（已经没有敌人了）
+int currentWave = gameManager.Wave;
+if (currentWave < waves.Length)
+{
+    //2 如果不是最后一波，根据当前的时间计算距离上次召唤敌人的间隔
+    float timeInterval = Time.time - lastSpawnTime;
+    float spawnInterval = waves[currentWave].spawnInterval;
+    if (((enemiesSpawned == 0 && timeInterval > timeBetweenWaves) || timeInterval > spawnInterval) &&
+        enemiesSpawned < waves[currentWave].maxEnemies)
+    {
+        //3 如果当前场景中没有一个敌人，并且间隔时间大于波数的间隔时间，或者已经存在敌人并且间隔时间大于了召唤的间隔
+        // 在上面条件的基础上并且当前的敌人数还没有达到当前波数设定的最多敌人数，则可以进行召唤
+        lastSpawnTime = Time.time;
+        GameObject newEnemy = (GameObject) Instantiate(waves[currentWave].enemyPrefab);
+        newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;
+        enemiesSpawned++;
+    }
+
+    //4 如果已经召唤出了当前波的所有敌人，则进入下一波的回合
+    if (enemiesSpawned == waves[currentWave].maxEnemies &&
+        GameObject.FindGameObjectWithTag("Enemy") == null)
+    {
+        gameManager.Wave++;
+        gameManager.Gold = Mathf.RoundToInt(gameManager.Gold*1.1f);
+        enemiesSpawned = 0;
+        lastSpawnTime = Time.time;
+    }
+}
+//5 如果所有的回合都通过了，则显示游戏胜利的动画
+else
+{
+    gameManager.gameOver = true;
+    GameObject gameOverText = GameObject.FindGameObjectWithTag("GameWon");
+    gameOverText.GetComponent<Animator>().SetBool("gameOver", true);
+}
+```
+让我们逐步来看:
+1. 拿到当前波数的索引，并检查是否已经是最后回合（已经没有敌人了）；
+2. 如果还有敌人，计算自从上次召唤敌人到现在的时间间隔，来检查当前时间是否可以召唤敌人，这里有两种情况，首先是即将召唤的敌人是当前回合的第一个敌人，这种情况下检查时间间隔是否大于`timeBetweenWaves`(回合的间隔时间), 否则，检查时间间隔是否大于`spawnInterval`(召唤的时间间隔)。无论上面哪种情况，我们要确保还没有召唤出当前回合的所有敌人；
+3. 如果需要，通过实例化一个`enemyPrefab`召唤出一个敌人，同时增加`enemiesSpawned`计数；
+4. 检查当前场景中的敌人数，如果敌人已经被干掉完了，则进入下一回合，同时奖励玩家10%的金币；
+5. 如果所有的回合都通过了，则显示游戏胜利的动画。
+
 
 
 
