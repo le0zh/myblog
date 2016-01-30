@@ -206,7 +206,145 @@ else
 5. 如果所有的回合都通过了，则显示游戏胜利的动画。
 
 
+#### 设置召唤间隔
 
+保存脚本文件，并返回Unity。在Hierarchy中选中Road，在Inspector面板中，将Waves的Size属性设置为4，然后，使用Enemy Prefab分别设置所有的四个元素的Enemy属性，同时像下面这样设置
+Spawn Interval和Max Enemies：
++ Element 0: Spawn Interval: 2.5, Max Enemies: 5
++ Element 1: Spawn Interval: 2, Max Enemies: 10
++ Element 2: Spawn Interval: 2, Max Enemies: 15
++ Element 3: Spawn Interval: 1, Max Enemies: 5
+
+最终的设置应该像下面这张截图一样：
+![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-01-at-18.46.16.png)
+
+当然，你也可以自己随意增加或减少其中的一些设置哈。
+运行游戏，不错。成队的虫子向我们的饼干进发了。。
+![gif](http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/bugs.gif)
+
+####　可选的：增加不同的敌人类型
+现在我们的塔防游戏只有一种类型的敌人，幸运的，在Prefabs文件夹下，有另外一种类型的敌人Enemy2。Speed为3，Tag 
+选中Prefabs\Enemy2，并在Inspector面板中增加 MoveEnemy 脚本组件，设置Speed为3，设置Tag为Enemy。现在我们有了这种移动速度很快的虫子敌人啦。
+
+
+### 更新玩家的生命值（慢慢的杀死我。。）
+
+现在，尽管虫子大军可以向饼干移动，但是玩家丝毫不会受到伤害。不能这样下去啦，玩家应该在敌人到达饼干时，受到伤害。
+
+![img](http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/LivesStolen2.png)
+打开GameManagerBehavior.cs脚本文件，增加下面的变量:
+```
+public Text healthLabel;
+public GameObject[] healthIndicator;
+```
+
+我们将使用`healthLabel`控制玩家的生命值显示，使用`healthIndicator`来控制代表玩家生命值的5个小的绿色的饼干（这比简单的使用一个标签显示生命值更有趣）。
+
+#### 管理生命值
+接下来，在GameManagerBehavior中增加一个属性来维护玩家的生命值：
+```
+private int health;
+public int Health
+{
+    get { return health; }
+    set
+    {
+        //1 如果收到攻击，则摇晃一下摄像头（屏幕会跟着晃动，提醒玩家）
+        if(value < health)
+        {
+            Camera.main.GetComponent<CameraShake>().Shake();
+        }
+
+        //2 更新生命值和显示的文本
+        health = value;
+        healthLabel.text = "HEALTH: " + health;
+
+        //3 玩家挂了的逻辑
+        if(health <= 0 && !gameOver)
+        {
+            gameOver = true;
+            GameObject gameOverText = GameObject.FindGameObjectWithTag("GameOver");
+            gameOverText.GetComponent<Animator>().SetBool("gameOver", true);
+        }
+
+        //4 更新代表生命值的饼干
+        for(int i = 0;i<healthIndicator.Length; i++)
+        {
+            if(i< health)
+            {
+                healthIndicator[i].SetActive(true);
+            }
+            else
+            {
+                healthIndicator[i].SetActive(false);
+            }
+        }
+    }
+}
+```
+这个用来管理玩家的生命值，再一次的，关键的逻辑代码在setter方法中：
+1. 如果要减少玩家的生命值，则使用CameraShake组件来创造一个晃动的效果。这个脚本（CameraShake）被包含在工程项目中，但不会在本教程中介绍。
+2. 更新私有变量和生命值的文本标签。
+3. 如果生命值将为了0并且游戏尚未结束，则设置gameOver为true，并触发GameOver动画。
+4. 移除被敌人吃掉的饼干，这里简单的使用了SetActive(false)，当生命值恢复时，可以再使能它使饼干回来。
+
+在`Start()`中初始化`Health`:
+```
+Health = 5;
+```
+
+这里在游戏开始时，玩家有5点的生命值。
+
+有了这个属性，就可以在敌人抵达饼干的位置时，更新玩家的生命值。保存这个脚本，切换到MoveEnemy.cs。
+
+#### 更新生命值
+
+为了更新玩家的生命值，在`Update`方法中找到`// TODO: deduct health`的注释，并用下面的代码替换:
+```
+GameManagerBehavior gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+gameManager.Health -= 1;
+```
+这里拿到`GameManagerBehavior`并将`Health`减1。
+保存脚本文件，返回Unity。
+
+在Hierarchy中选中GameManager并将Health Label设置为HealthLabel。
+
+Hierarchy中，展开Cookie并拖拽它的五个子节点HealthIndicator，到GameManager的 Health Indicator数组。
+
+开始游戏，并等到敌人到达饼干的位置，啥也不干，等到你被打死（。。。）
+
+![gif](http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/cookie-attack.gif)
+
+
+### 怪兽之战，怪兽的复仇
+是时候开战啦，让守卫饼干的怪兽和试图吃饼干的虫子开战。
+
+还需要以下这些工作：
++ 一个生命值条，让玩家清楚的知道敌人孰强孰弱
++ 检测怪兽攻击范围内的虫子
++ 向哪个虫子开火
++ 许多的子弹
+
+#### 敌人的生命值条
+
+ 我们将使用两张图片来实现生命值条，一个深色的背景和一个稍微浅绿色的条，根据敌人的生命值来调整浅绿色条的比例。
+
+从Project Browser中拖拽Prefabs\Enemy到场景中。
+然后拖拽Images\Objects\HealthBarBackground到Enemy上，使其成为Enemy的子节点。
+在Inspector中, 设置HealthBarBackground的位置为(0, 1, -4)。
+
+然后，在 Project Browser中选中Images\Objects\HealthBar，并确保他的Pivot被设置为Left，然后在Hierarchy中添加它为Enemy的子节点，并设置它的位置为(-0.63, 1, -5)，设置X Scale为125。
+
+
+新建一个新的C#脚本，重命名为HealthBar，然后挂到HealthBar上，稍后，我们将调整生命条的长度。
+
+在Hierarchy中选中Enemy，确保它的位置为(20, 0, 0)。
+
+在Inspector面板的顶部，点击Apply按钮保存刚刚的修改。最后将Enemy从Hierarchy上删除。
+
+![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-07-at-11.37.12.png)
+
+重复上面的步骤，给Prefabs\Enemy2加上生命值条。
 
 
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
