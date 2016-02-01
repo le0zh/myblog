@@ -331,10 +331,9 @@ Hierarchy中，展开Cookie并拖拽它的五个子节点HealthIndicator，到Ga
 
 从Project Browser中拖拽Prefabs\Enemy到场景中。
 然后拖拽Images\Objects\HealthBarBackground到Enemy上，使其成为Enemy的子节点。
-在Inspector中, 设置HealthBarBackground的位置为(0, 1, -4)。
+在Inspector中, 设置HealthBarBackground的位置为(0, 1, 0)。
 
-然后，在 Project Browser中选中Images\Objects\HealthBar，并确保他的Pivot被设置为Left，然后在Hierarchy中添加它为Enemy的子节点，并设置它的位置为(-0.63, 1, -5)，设置X Scale为125。
-
+然后，在 Project Browser中选中Images\Objects\HealthBar，并确保他的Pivot被设置为Left，然后在Hierarchy中添加它为Enemy的子节点，并设置它的位置为(-0.63, 1, -1)，设置X Scale为125。
 
 新建一个新的C#脚本，重命名为HealthBar，然后挂到HealthBar上，稍后，我们将调整生命条的长度。
 
@@ -345,6 +344,42 @@ Hierarchy中，展开Cookie并拖拽它的五个子节点HealthIndicator，到Ga
 ![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-07-at-11.37.12.png)
 
 重复上面的步骤，给Prefabs\Enemy2加上生命值条。
+
+#### 调整生命值条（血条）的长度
+在代码编辑器中打开HealthBar.cs，添加下面的变量：
+```
+public float maxHealth = 100; //敌人的最大生命值
+public float currentHealth = 100; //敌人的当前生命值
+private float originalScale; //记录生命值条的初始大小
+```
+`maxHealth`记录敌人的最大生命值，`currentHealth`记录敌人当前的生命值，最后使用`originalScale`记录生命条的初始大小。
+
+在`Start()`方法中，给`originalScale`一个初始值：
+```
+void Start ()
+{
+    originalScale = gameObject.transform.localScale.x;
+}
+```
+我们保存了`localScale.x`的值。
+
+在`Update()`方法中，通过下面的代码设置血条的大小：
+```
+void Update()
+{
+    Vector3 tmpScale = gameObject.transform.localScale;
+    tmpScale.x = currentHealth / maxHealth * originalScale;
+    gameObject.transform.localScale = tmpScale;
+}
+```
+
+首先，我们把`localScale`拷贝到了一个临时变量，因为我们将紧紧修改它的x的值，然后根据敌人现在的生命值计算新的x的值，最后将前面的临时变量赋值回`localScale`。
+保存脚本文件，在Unity中运行游戏，我们将看到敌人的血条了，像下面这样：
+![img](http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-06-at-10.24.48.png)
+
+在游戏运行时, 在Hierarchy面板中展开Enemy(Clone)对象，然后选中它的HealthBar子节点， 改变当前生命的数值，检查血条的变化：
+![gif](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/AdjustHealthbar.gif)
+
 
 
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
