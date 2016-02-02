@@ -407,7 +407,7 @@ public EnemyDelegate enemyDelegate;
 
 增加下面的方法：
 ```
-void onDestroy()
+void OnDestroy()
 {
     if (enemyDelegate != null)
     {
@@ -479,12 +479,12 @@ void OnTriggerExit2D(Collider2D other)
 
 打开MoveEnemy.cs，添加下面的方法：
 ```
-public float distancToGoal()
+public float distanceToGoal()
 {
     float distance = 0;
     distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
 
-    for (var i = currentWaypoint + 1; i < waypoints.Length; i++)
+    for (var i = currentWaypoint + 1; i < waypoints.Length - 1; i++)
     {
         Vector3 startPosition = waypoints[i].transform.position;
         Vector3 endPosition = waypoints[i + 1].transform.position;
@@ -570,5 +570,44 @@ if (gameObject.transform.position.Equals(targetPosition))
 #### 获得更大的子弹
 如果我们的怪兽在升级后，能获取更大的子弹是不是很酷。当然是的哈。幸运的是，这也很好实现。
 
-![gif](http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/count-sheep.gif)
+在Hierarchy中，拖拽Bullet1到Project标签页里面来创建一个子弹的prefab。
+删除场景中的Bullet1对象，我们不再需要他啦。
+
+复制Bullet1 prefab两次（快捷键Ctrl+ D）,分别命名为Bullet2和Bullet3。
+选中Bullet2，在Inspector面板中，设置它的Sprite Renderer组件的Sprite属性为Images/Objects/Bullet2，这将使Bullet2看起来别Bullet1更大一些。
+重复上面的步骤设置Bullet3的sprite为Images/Objects/Bullet3。
+接下来，设置子弹的伤害值。
+
+在Project标签页中选中Bullet1 prefab，在Inspector面板汇总，找到Bullet Behavior组件，并分别设置Bullet1的Damage为10，Bullet2的Damage为15，Bullet1的Damage为20，或者其他的你喜欢的任意值。
+
+![img](http://cdn2.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-12.39.32.png)
+
+#### 给子弹分级别
+将不同的子弹分配给不同的怪兽级别，使高等级的怪兽更快的消灭敌人。
+打开MonsterData.cs脚本，在类`MonsterLevel`增加下面的变量:
+```
+public GameObject bullet;
+public float fireRate;
+```
+这将为每个怪兽级别设置子弹的prefab和发射频率，保存脚本并返回Unity去完成设置工作。
+在Project Browser中选中Monster prefab，在Inspector中，展开Monster Data组件的Levels属性。设置每个元素的Fire Rate为1，然后分别为每个元素的Bullet属性设置为Bullet1, Bullet2 和Bullet3。
+
+你的怪兽级别设置应该像下面这样：
+![img](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/MonsterData-with-bullets.png)
+
+#### 开火
+打开ShootEnemies.cs，添加下面的变量:
+```
+private float lastShotTime;
+private MonsterData monsterData;
+```
+这项变零记录怪兽最近一次开火的时间，同时包含怪兽子弹类型、发送频率的MonsterData。
+
+As their names suggest, these variables keep track of when this monster last fired, as well the MonsterData structure that includes information about this monster’s bullet type, fire rate, etc.
+Assign values to those fields in Start():
+lastShotTime = Time.time;
+monsterData = gameObject.GetComponentInChildren<MonsterData> ();
+Here you set lastShotTime to the current time and get access to this object’s MonsterData component.
+Add the following method to implement shooting:
+
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
