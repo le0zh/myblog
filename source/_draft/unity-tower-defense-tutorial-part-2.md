@@ -380,6 +380,195 @@ void Update()
 在游戏运行时, 在Hierarchy面板中展开Enemy(Clone)对象，然后选中它的HealthBar子节点， 改变当前生命的数值，检查血条的变化：
 ![gif](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/AdjustHealthbar.gif)
 
+#### 追踪攻击范围内的敌人
+现在我们的怪兽需要知道瞄准那个敌人。在我们实现之前，需要对怪兽和敌人做一些前期工作。
 
+在Project Browser中选中Prefabs\Monster，然后在Inspector面板中添加一个Circle Collider 2D组件。
+设置刚刚添加的碰撞器的半径为2.5，这将是怪兽的攻击范围。
 
+勾选上Is Trigger属性，这样的话其他对象就能穿过这片区域，而不会是直接撞上。
+最后，在Inspector面板的顶部, 设置Monster的层为Ignore Raycast，在弹出来的对话框中，选择" Yes, change children"(将更改应用到子节点)，如果我们不忽略光线投射(raycast)，那么碰撞器将会响应点击事件，而这将带来怪兽会挡住下面的空位(openspot)的事件.
+![img](http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-05-um-14.47.15.png)
+
+为了能够在碰撞器区域范围内检测到敌人，也需要给敌人添加一个碰撞器和刚体(rigid body)，因为Unity只有当一个碰撞器被附加的刚体时，才回触发`trigger`事件。
+
+在Project Browser中选中Prefabs\Enemy， 添加一个Rigid Body 2D组件，同时选中Is Kinematic，这样该物体不应该受到物理的影响。
+再添加一个Circle Collider 2D组件，设置Radius为1， 重复上面的步骤修改Prefabs\Enemy 2。
+
+现在触发器已经设置完毕了, 怪兽可以检测敌人是否进入攻击范围内了。
+我们还需要一个东西: 当敌人被消灭时，一个脚本来通知我们怪兽停止攻击。
+新建一个名为EnemyDestructionDelegate的C#脚本，并挂载到Enemy和Enemy2 prefab上。
+打开EnemyDestructionDelegate.cs，增加下面的委托声明：
+```
+public delegate void EnemyDelegate(GameObject enemy);
+public EnemyDelegate enemyDelegate;
+```
+这里我们创建了一个委托（一个方法的容器，可以被当做变量传递）。
+
+增加下面的方法：
+```
+void onDestroy()
+{
+    if (enemyDelegate != null)
+    {
+        enemyDelegate(gameObject);
+    }
+}
+```
+在销毁一个游戏对象时，Unity会自动调用上面的方法，在这个方法里检查委托是否为空。如果不为空，则用`gameObject`作为参数调用这个委托的方法。这样一来，所有的注册了的监听者都能知道敌人已经被销毁了。
+保存脚本文件，返回Unity。
+
+#### 怪兽们开火吧（Give Monsters a License to Kill）
+现在怪兽们可以检测攻击范围内的敌人啦，新建一个名为ShootEnemies的C#脚本，挂载到Monster prefab上。
+
+打开ShootEnemies.cs，添加下面的using语句来使用泛型：
+```
+using System.Collections.Generic;
+```
+
+添加一个变量来保存攻击范围内的敌人:
+```
+public List<GameObject> enemiesInRange;
+```
+
+我们将在`enemiesInRange`中保存所有在攻击范围内的敌人的引用.
+在`Start()`方法中初始化这个变量：
+```
+enemiesInRange = new List<GameObject>(); //初始化为空的列表
+```
+在开始，没有任何敌人是在攻击范围内的，所以用空的列表初始化。
+添加下面的代码来填充`enemiesInRange`列表：
+```
+//1 当敌人被销毁时，从enemiesInRange列表中移除
+void onEnemyDestroy(GameObject enemy)
+{
+    enemiesInRange.Remove(enemy);
+}
+
+void OnTriggerEnter2D(Collider2D other)
+{
+    //2 如果碰撞检测的另一个对象是敌人，则加入到列表，同时注册enemyDelegate
+    if (other.gameObject.tag.Equals("Enemy"))
+    {
+        enemiesInRange.Add(other.gameObject);
+        EnemyDestructionDelegate del = other.gameObject.GetComponent<EnemyDestructionDelegate>();
+        del.enemyDelegate += onEnemyDestroy;
+    }
+}
+
+void OnTriggerExit2D(Collider2D other)
+{
+    //3 如果超出了范围，且另一个对象是敌人， 则移除列表，并撤销enemyDelegate的注册
+    if (other.gameObject.tag.Equals("Enemy"))
+    {
+        enemiesInRange.Remove(other.gameObject);
+        EnemyDestructionDelegate del = other.gameObject.GetComponent<EnemyDestructionDelegate>();
+        del.enemyDelegate -= onEnemyDestroy;
+    }
+}
+```
+1. 在`OnEnemyDestroy`，我们将敌人从`enemiesInRange`移除，当敌人进入到怪物的触发区域内时，`OnTriggerEnter2D`会被调用。
+2. 然后我们将敌人加入到`enemiesInRange`，同时注册`EnemyDestructionDelegate`，这确保了当敌人被销毁时，`OnEnemyDestroy`会被自动调用，我们当然不喜欢在已经挂了的敌人上浪费弹药。
+3. 在`OnTriggerExit2D`我们将敌人从`enemiesInRange`移除，同时撤销监听`EnemyDestructionDelegate`。现在我们可以搞清楚哪些敌人在攻击范围内了。
+
+保存脚本，在Unity中运行游戏，为了检测能否正常工作，放置一个怪兽，选中它，并在Inspector中观察` enemiesInRange`列表的变化！
+
+#### 选一个目标
+当多个敌人出现在攻击范围之内时，选中哪个作为目标呢？
+当然，是攻击离饼干最近的那个。
+
+打开MoveEnemy.cs，添加下面的方法：
+```
+public float distancToGoal()
+{
+    float distance = 0;
+    distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
+
+    for (var i = currentWaypoint + 1; i < waypoints.Length; i++)
+    {
+        Vector3 startPosition = waypoints[i].transform.position;
+        Vector3 endPosition = waypoints[i + 1].transform.position;
+        distance += Vector3.Distance(startPosition, endPosition);
+    }
+
+    return distance;
+}
+```
+上面的代码计算了敌人剩下路段的距离，通过使用`Distance`方法计算两个`Vector3`实例之间的距离。
+
+我们稍后将使用这个方法来找到攻击的目标，但是现在我们的怪兽还是没有装备武器呢，先解决这个。
+
+![img](http://cdn3.raywenderlich.com/wp-content/uploads/2012/07/yunofire.jpg)
+
+保存脚本文件，返回Unity准备开始准备子弹。
+
+#### 给怪兽分配子弹---很多的子弹！
+在Project Browser中拖拽Images/Objects/Bullet1到场景中，设置z值为-2，x和y的值随意，因为我们每次在实例化子弹时都将设置。
+
+新建一个名为BulletBehavior的脚本，添加下面的变量 ：
+```
+public float speed = 10;
+public int damage;
+public GameObject target;
+public Vector3 startPosition;
+public Vector3 targetPosition;
+
+private float distance;
+private float startTime;
+
+private GameManagerBehavior gameManager;
+```
+`speed`定义了子弹飞行的速度，`damage`则是伤害值。
+`target`, `startPosition`, 和`targetPosition`决定了子弹的方向。
+`distance`和`startTime`记录子弹的当前位置，当玩家消灭一个敌人时，用`gameManager`来奖励玩家。
+
+在`Start()`方法中初始化:
+```
+startTime = Time.time;
+distance = Vector3.Distance(startPosition, targetPosition);
+GameObject gm = GameObject.Find("GameManager");
+gameManager = gm.GetComponent<GameManagerBehavior>();
+```
+将`startTime`设置为当前的时间，并计算开始位置和目标位置之间的距离，同时像之前一样拿到`GameManagerBehavior`的引用。
+在`Update()`方法中，添加下面的代码来控制子弹的移动：
+```
+//1 
+float timeInterval = Time.time - startTime;
+gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval*speed/distance);
+
+//2
+if (gameObject.transform.position.Equals(targetPosition))
+{
+    if (target != null)
+    {
+        //3
+        Transform healthBarTransform = target.transform.FindChild("HealthBar");
+        HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
+        healthBar.currentHealth -= Mathf.Max(damage, 0);
+
+        //4
+        if (healthBar.currentHealth <= 0)
+        {
+            Destroy(target);
+            AudioSource audioSource = target.GetComponent<AudioSource>();
+            AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+
+            gameManager.Gold += 50;
+        }
+    }
+
+    Destroy(gameObject);
+}
+```
+1. 我们通过使用`Vector3.Lerp`来在开始和结束位置做插值来计算子弹新的子弹。
+2. 如果子弹抵达了目标位置，则验证目标是否还存在。
+3. 获取目标的HealthBar组件，并用子弹的伤害值减少相应的生命值。
+4. 如果敌人的生命值将为了0，则销毁敌人，播放一个声音特效并给玩家奖励相应的金币。
+
+保存脚本文件，并返回Unity。
+
+#### 获得更大的子弹
+如果我们的怪兽在升级后，能获取更大的子弹是不是很酷。当然是的哈。幸运的是，这也很好实现。
+
+![gif](http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/count-sheep.gif)
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
