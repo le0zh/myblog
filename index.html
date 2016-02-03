@@ -64,7 +64,7 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>標籤</li>
+						<li>Тэги</li>
 						
 						
 					</ul>
@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 16.67px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 13.33px;">react-native</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 17.5px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/unity/" style="font-size: 12.5px;">unity</a>
 					</div>
 				</section>
 				
@@ -155,6 +155,72 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-create-tower-defense-game-unity-part-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/03/create-tower-defense-game-unity-part-2/" class="article-date">
+  	<time datetime="2016-02-03T04:40:12.000Z" itemprop="datePublished">2016-02-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/03/create-tower-defense-game-unity-part-2/">使用unity创建塔防游戏(译)(part2)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在<a href="http://le0zh.github.io/2016/01/21/create-tower-defense-game-unity-part-1/">第一部分</a>中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。</p>
+<p>然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。</p>
+<p><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-26-at-18.29.53.png" alt="img"></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/game/">game</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/03/create-tower-defense-game-unity-part-2/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-keys-in-children-components-are-important" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -752,71 +818,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/01/12/hoisting/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-check-property-in-object" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/11/check-property-in-object/" class="article-date">
-  	<time datetime="2016-01-11T02:40:12.000Z" itemprop="datePublished">2016-01-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/11/check-property-in-object/">检查对象中是否存在某个属性</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当需要检查某个属性是否在一个对象中时，你可能会像下面这样子做：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    name: 'hello'</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(typeof myObject['name'] !== 'undefined') <span class="decorator">&#123;...&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(myObject['name'])｛...｝</span><br></pre></td></tr></table></figure></p>
-<p>上面的方法没有问题，但是你应该知道有两个原生的方法可以做这类事情，　<code>Object.in</code> 和 <code>Object.hasOwnProperty</code>， 每个对象都是Object的子类，所以都已经有了这两个方法</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/javascript/">javascript</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/11/check-property-in-object/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

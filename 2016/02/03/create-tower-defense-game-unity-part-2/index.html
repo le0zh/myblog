@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>使用unity创建塔防游戏(译)(part2) | le0zh&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在第一部分中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。
+然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用unity创建塔防游戏(译)(part2)">
+<meta property="og:url" content="http://le0zh.github.io/2016/02/03/create-tower-defense-game-unity-part-2/index.html">
+<meta property="og:site_name" content="le0zh's blog">
+<meta property="og:description" content="欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在第一部分中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。
+然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-26-at-18.29.53.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/calculate-angles.png">
+<meta property="og:image" content="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/BugFollowsRoad.gif">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/nextWaveAnimation.gif">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/gameManager-with-waves.png">
+<meta property="og:image" content="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/counting-waves.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2015/06/Create-Tag.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-03.55.00.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-01-at-18.46.16.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/bugs.gif">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/LivesStolen2.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/cookie-attack.gif">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-07-at-11.37.12.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-06-at-10.24.48.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/AdjustHealthbar.gif">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-05-um-14.47.15.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2012/07/yunofire.jpg">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-12.39.32.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/MonsterData-with-bullets.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/watchingYou.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2015/04/ezgif.com-crop3.gif">
+<meta property="og:updated_time" content="2016-02-03T04:32:30.384Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用unity创建塔防游戏(译)(part2)">
+<meta name="twitter:description" content="欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在第一部分中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。
+然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。">
+  
+    <link rel="alternative" href="/atom.xml" title="le0zh&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xl2vf.com1.z0.glb.clouddn.com/imgle0zh.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">le0zh</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">梦想 行动 坚持</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>Тэги</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/le0zh" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/li9ht" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 17.5px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/unity/" style="font-size: 12.5px;">unity</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">le0zh</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xl2vf.com1.z0.glb.clouddn.com/imgle0zh.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">le0zh</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">梦想 行动 坚持</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/le0zh" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/li9ht" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-create-tower-defense-game-unity-part-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/03/create-tower-defense-game-unity-part-2/" class="article-date">
+  	<time datetime="2016-02-03T04:40:12.000Z" itemprop="datePublished">2016-02-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用unity创建塔防游戏(译)(part2)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/game/">game</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在<a href="http://le0zh.github.io/2016/01/21/create-tower-defense-game-unity-part-1/">第一部分</a>中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。</p>
+<p>然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。</p>
+<p><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-26-at-18.29.53.png" alt="img"></p>
+<a id="more"></a> 
+<h3 id="u5F00_u59CB"><a href="#u5F00_u59CB" class="headerlink" title="开始"></a>开始</h3><p>在Unity中，打开在第一部分中完成的项目，如果你是从这篇教程才开始的，可以直接下载并打开<a href="http://7xl2vf.com1.z0.glb.clouddn.com/td/TowerDefense-Part2-Starter.7z" target="_blank" rel="external">TowerDefence-Part2-Starter</a>项目。</p>
+<p>从scene文件夹中，打开GameScene。</p>
+<h3 id="u65CB_u8F6C_u654C_u4EBA"><a href="#u65CB_u8F6C_u654C_u4EBA" class="headerlink" title="旋转敌人"></a>旋转敌人</h3><p>在第一部分教程的最后，敌人可以沿着路线移动，但是不能面向前进的方向。在代码编辑器中打开MoveEnemy.cs，添加下面的方法来修正这个问题:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RotateIntoMoveDirection</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">//1</span></span><br><span class="line">    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;</span><br><span class="line">    Vector3 newEndPosition = waypoints[currentWaypoint + <span class="number">1</span>].transform.position;</span><br><span class="line">    Vector3 newDirection = (newEndPosition - newStartPosition);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2</span></span><br><span class="line">    <span class="keyword">float</span> x = newDirection.x;</span><br><span class="line">    <span class="keyword">float</span> y = newDirection.y;</span><br><span class="line">    <span class="keyword">float</span> rotationAngle = Mathf.Atan2(y, x)*<span class="number">180</span>/Mathf.PI;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    GameObject sprite = (GameObject) gameObject.transform.FindChild(<span class="string">"Sprite"</span>).gameObject;</span><br><span class="line">    sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>RotateIntoMoveDirection</code>这个方法将会旋转敌人使其永远朝向前进的方向:</p>
+<ol>
+<li>通过用当前的路标位置减去下一个路标位置，得到当前敌人的移动方向。</li>
+<li>使用<code>Mathf.Atan2</code>方法算出新的移动发祥的角度(单位是弧度)，然后将结果转换为角度(使用 <code>180/Mathf.PI</code>转换)。</li>
+<li>最后，得到名为Sprite的子节点，并沿着z轴旋转<code>rotationAngle</code>，请注意，我们只是旋转了Sprite子节点，而不是整个敌人，这样我们稍后会添加的生命值条将会保持水平方向不变。</li>
+</ol>
+<p><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/calculate-angles.png" alt="img"></p>
+<p>在<code>Update()</code>方法中，替换原来的注释<code>// TODO: Rotate into move direction</code>为下面这行代码：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RotateIntoMoveDirection()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>保存脚本文件，并返回到Unity中，运行游戏，现在敌人知道面向前进的方向了:<br><img src="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/BugFollowsRoad.gif" alt="gif"></p>
+<p>只有一个敌人？没什么意思，来一群敌人吧！同时像多数塔防游戏一样，成群的敌人一波一波的来袭！</p>
+<h3 id="u901A_u77E5_u73A9_u5BB6"><a href="#u901A_u77E5_u73A9_u5BB6" class="headerlink" title="通知玩家"></a>通知玩家</h3><p>在成群的敌人进攻之前，我们要通知玩家即将到来的攻击。同时，为什么不在屏幕的上方显示当前的波数呢。</p>
+<p>不止一个的游戏对象需要知道波数的信息，所以我们将它加到GameManamger的GameManagerBehavior组件。</p>
+<p>在代码编辑器中打开GameManagerBehavior.cs并添加下面这两个变量：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">Text</span> waveLabel;</span><br><span class="line"><span class="keyword">public</span> GameObject[] nextWaveLabels;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>waveLabel</code>是在屏幕右上角显示当前波数的对象引用，<code>nextWaveLabels</code>中有连个游戏对象，组合来制作当新的一波敌人开始时的的动画，就像下面这样:<br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/nextWaveAnimation.gif" alt="gif"></p>
+<p>保存脚本文件，返回Unity，在Hierarcy面板选中GameManager，点击WaveLabel右侧的小圆形按钮，在 Select Text对话框中选中Scene标签页下的WaveLabel。<br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/gameManager-with-waves.png" alt="img"></p>
+<p>如果玩家游戏失败了，他不应该看到下一波的信息，为了解决这个问题，回到GameManagerBehavior.cs脚本并添加下面的另一个变量:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">bool</span> gameOver = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure></p>
+<p>我们将使用<code>gameOver</code>来记录玩家是否已经游戏失败。</p>
+<p>同样，我们将使用属性来保持游戏中的元素在当前回合中的一致性，在GameManagerBehavior中添加下面的代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> wave;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Wave</span><br><span class="line">&#123;</span><br><span class="line">    get &#123; <span class="keyword">return</span> wave; &#125;</span><br><span class="line">    <span class="built_in">set</span></span><br><span class="line">    &#123;</span><br><span class="line">        wave = value;</span><br><span class="line">        <span class="keyword">if</span> (!gameOver)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nextWaveLabels.Length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                nextWaveLabels[i].GetComponent&lt;Animator&gt;().SetTrigger(<span class="string">"nextWave"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        waveLabel.text = <span class="string">"WAVE: "</span> + (wave + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面创建私有变量、属性、getter方法都是常规的方法，但是再一次的，setter方法有些特殊：</p>
+<ul>
+<li>我们使用新的<code>value</code>更新<code>wave</code></li>
+<li>然后检查游戏是已经结束，如果还没有结束，则遍历<code>nextWaveLabels</code>（包含Animatro组件的label集合），触发nextWave的动画</li>
+<li>最后，设置waveLabel的显示文本为<code>wave + 1</code>，为什么要加1，因为普通玩家不会从0开始数，你懂得。</li>
+</ul>
+<p>在<code>Start()</code>方法中，设置属性的值:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wave = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>我们从0开始计数<code>Wave</code>。<br>保存脚本文件，在Unity中运行游戏，现在波数应该能正常的显示为从1开始:<br><img src="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/counting-waves.png" alt="img"></p>
+<h3 id="u8BA9_u654C_u4EBA_u6765_u7684_u66F4_u731B_u70C8_u4E9B"><a href="#u8BA9_u654C_u4EBA_u6765_u7684_u66F4_u731B_u70C8_u4E9B" class="headerlink" title="让敌人来的更猛烈些"></a>让敌人来的更猛烈些</h3><p>目前，我们还不能创建更多的敌人，同时，我们不能再当前波的敌人被消灭完之前，召唤出下一波的敌人，至少现在不能。</p>
+<p>所以，游戏必须要能区分出当前游戏场景中是否存在敌人，这里Tags是个非常好的用来区分游戏对象的方法。</p>
+<h4 id="u7ED9_u654C_u4EBA_u6253_u4E0A_u6807_u7B7E_28Tags_29"><a href="#u7ED9_u654C_u4EBA_u6253_u4E0A_u6807_u7B7E_28Tags_29" class="headerlink" title="给敌人打上标签(Tags)"></a>给敌人打上标签(Tags)</h4><p>在Project Browser中选中Enemy prefab，在Inspector面板的顶部，点击Tag下拉框并选中添加Tag（Add Tag）<br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/06/Create-Tag.png" alt="img"></p>
+<p>创建一个名为Enemy的Tag<br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-03.55.00.png" alt="img"></p>
+<p>选中Enemy prefab，在Inspector面板中设置其Tag为新创建的Enemy。</p>
+<h4 id="u5B9A_u4E49Waves"><a href="#u5B9A_u4E49Waves" class="headerlink" title="定义Waves"></a>定义Waves</h4><p>现在我们需要定义一波的敌人了，在代码编辑器中打开SpawnEnemy.cs，在类<code>SpawnEnemy</code>之前增加下面的定义 ：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[System.Serializable]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Wave</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> GameObject enemyPrefab;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> spawnInterval = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> maxEnemies = <span class="number">20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>Wave</code>中有一个<code>enemyPrefab</code>，是用来实例化敌人的基础，<code>spawnInterval</code>用来指定创建敌人的间隔，<code>maxEnemies</code>指定一波敌人的最大数量。</p>
+<p>上面这个类是可序列化的，意味着我们可以在Inspector中改变它的值。<br>向<code>SpawnEnemy</code>类中添加下面的变量 ：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Wave[] waves;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> timeBetweenWaves = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> GameManagerBehavior gameManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> lastSpawnTime;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> enemiesSpawned = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这里设置了一些用来召唤敌人的变量，跟我们用来使敌人沿着路标移动的那些很相似。我们将在<code>waves</code>中定义游戏中的各个回合的敌人信息，使用<code>enemiesSpawned</code>和<code>lastSpawnTime</code>记录已经召唤出来的敌人个数和召唤的时间。</p>
+<p>玩家需要再杀死一波的敌人之后休息一下，所以设置<code>timeBetweenWaves</code>为5秒。</p>
+<p>在<code>Start()</code>方法中增加下面的内容:<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lastSpawnTime = <span class="built_in">Time</span>.<span class="built_in">time</span>;</span><br><span class="line">gameManager = GameObject.<span class="built_in">Find</span>("GameManager").GetComponent&lt;GameManagerBehavior&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>这里我们设置了<code>lastSpawnTime</code>为当前时间，也就是当场景加载完毕脚本开始的时间。<br>然后我们用了之前的方式拿到GameManagerBehavior的引用。</p>
+<p>在<code>Update()</code>方法中添加下面的代码：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 拿到当前波数的索引，并检查是否是最后的回合（已经没有敌人了）</span></span><br><span class="line">int currentWave = gameManager.Wave;</span><br><span class="line"><span class="keyword">if</span> (currentWave &lt; <span class="built_in">waves</span>.Length)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//2 如果不是最后一波，根据当前的时间计算距离上次召唤敌人的间隔</span></span><br><span class="line">    float timeInterval = <span class="built_in">Time</span>.<span class="built_in">time</span> - lastSpawnTime;</span><br><span class="line">    float spawnInterval = <span class="built_in">waves</span>[currentWave].spawnInterval;</span><br><span class="line">    <span class="keyword">if</span> (((enemiesSpawned == <span class="number">0</span> &amp;&amp; timeInterval &gt; timeBetweenWaves) || timeInterval &gt; spawnInterval) &amp;&amp;</span><br><span class="line">        enemiesSpawned &lt; <span class="built_in">waves</span>[currentWave].maxEnemies)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//3 如果当前场景中没有一个敌人，并且间隔时间大于波数的间隔时间，或者已经存在敌人并且间隔时间大于了召唤的间隔</span></span><br><span class="line">        <span class="comment">// 在上面条件的基础上并且当前的敌人数还没有达到当前波数设定的最多敌人数，则可以进行召唤</span></span><br><span class="line">        lastSpawnTime = <span class="built_in">Time</span>.<span class="built_in">time</span>;</span><br><span class="line">        GameObject newEnemy = (GameObject) Instantiate(<span class="built_in">waves</span>[currentWave].enemyPrefab);</span><br><span class="line">        newEnemy.GetComponent&lt;MoveEnemy&gt;().<span class="built_in">waypoints</span> = <span class="built_in">waypoints</span>;</span><br><span class="line">        enemiesSpawned++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4 如果已经召唤出了当前波的所有敌人，则进入下一波的回合</span></span><br><span class="line">    <span class="keyword">if</span> (enemiesSpawned == <span class="built_in">waves</span>[currentWave].maxEnemies &amp;&amp;</span><br><span class="line">        GameObject.FindGameObjectWithTag(<span class="string">"Enemy"</span>) == null)</span><br><span class="line">    &#123;</span><br><span class="line">        gameManager.Wave++;</span><br><span class="line">        gameManager.Gold = Mathf.RoundToInt(gameManager.Gold*<span class="number">1.1</span>f);</span><br><span class="line">        enemiesSpawned = <span class="number">0</span>;</span><br><span class="line">        lastSpawnTime = <span class="built_in">Time</span>.<span class="built_in">time</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//5 如果所有的回合都通过了，则显示游戏胜利的动画</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    gameManager.gameOver = <span class="literal">true</span>;</span><br><span class="line">    GameObject gameOverText = GameObject.FindGameObjectWithTag(<span class="string">"GameWon"</span>);</span><br><span class="line">    gameOverText.GetComponent&lt;Animator&gt;().SetBool(<span class="string">"gameOver"</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>让我们逐步来看:</p>
+<ol>
+<li>拿到当前波数的索引，并检查是否已经是最后回合（已经没有敌人了）；</li>
+<li>如果还有敌人，计算自从上次召唤敌人到现在的时间间隔，来检查当前时间是否可以召唤敌人，这里有两种情况，首先是即将召唤的敌人是当前回合的第一个敌人，这种情况下检查时间间隔是否大于<code>timeBetweenWaves</code>(回合的间隔时间), 否则，检查时间间隔是否大于<code>spawnInterval</code>(召唤的时间间隔)。无论上面哪种情况，我们要确保还没有召唤出当前回合的所有敌人；</li>
+<li>如果需要，通过实例化一个<code>enemyPrefab</code>召唤出一个敌人，同时增加<code>enemiesSpawned</code>计数；</li>
+<li>检查当前场景中的敌人数，如果敌人已经被干掉完了，则进入下一回合，同时奖励玩家10%的金币；</li>
+<li>如果所有的回合都通过了，则显示游戏胜利的动画。</li>
+</ol>
+<h4 id="u8BBE_u7F6E_u53EC_u5524_u95F4_u9694"><a href="#u8BBE_u7F6E_u53EC_u5524_u95F4_u9694" class="headerlink" title="设置召唤间隔"></a>设置召唤间隔</h4><p>保存脚本文件，并返回Unity。在Hierarchy中选中Road，在Inspector面板中，将Waves的Size属性设置为4，然后，使用Enemy Prefab分别设置所有的四个元素的Enemy属性，同时像下面这样设置<br>Spawn Interval和Max Enemies：</p>
+<ul>
+<li>Element 0: Spawn Interval: 2.5, Max Enemies: 5</li>
+<li>Element 1: Spawn Interval: 2, Max Enemies: 10</li>
+<li>Element 2: Spawn Interval: 2, Max Enemies: 15</li>
+<li>Element 3: Spawn Interval: 1, Max Enemies: 5</li>
+</ul>
+<p>最终的设置应该像下面这张截图一样：<br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-01-at-18.46.16.png" alt="img"></p>
+<p>当然，你也可以自己随意增加或减少其中的一些设置哈。<br>运行游戏，不错。成队的虫子向我们的饼干进发了。。<br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/bugs.gif" alt="gif"></p>
+<p>####　可选的：增加不同的敌人类型<br>现在我们的塔防游戏只有一种类型的敌人，幸运的，在Prefabs文件夹下，有另外一种类型的敌人Enemy2。Speed为3，Tag<br>选中Prefabs\Enemy2，并在Inspector面板中增加 MoveEnemy 脚本组件，设置Speed为3，设置Tag为Enemy。现在我们有了这种移动速度很快的虫子敌人啦。</p>
+<h3 id="u66F4_u65B0_u73A9_u5BB6_u7684_u751F_u547D_u503C_uFF08_u6162_u6162_u7684_u6740_u6B7B_u6211_u3002_u3002_uFF09"><a href="#u66F4_u65B0_u73A9_u5BB6_u7684_u751F_u547D_u503C_uFF08_u6162_u6162_u7684_u6740_u6B7B_u6211_u3002_u3002_uFF09" class="headerlink" title="更新玩家的生命值（慢慢的杀死我。。）"></a>更新玩家的生命值（慢慢的杀死我。。）</h3><p>现在，尽管虫子大军可以向饼干移动，但是玩家丝毫不会受到伤害。不能这样下去啦，玩家应该在敌人到达饼干时，受到伤害。</p>
+<p><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/LivesStolen2.png" alt="img"><br>打开GameManagerBehavior.cs脚本文件，增加下面的变量:<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">Text</span> healthLabel;</span><br><span class="line"><span class="keyword">public</span> GameObject[] healthIndicator;</span><br></pre></td></tr></table></figure></p>
+<p>我们将使用<code>healthLabel</code>控制玩家的生命值显示，使用<code>healthIndicator</code>来控制代表玩家生命值的5个小的绿色的饼干（这比简单的使用一个标签显示生命值更有趣）。</p>
+<h4 id="u7BA1_u7406_u751F_u547D_u503C"><a href="#u7BA1_u7406_u751F_u547D_u503C" class="headerlink" title="管理生命值"></a>管理生命值</h4><p>接下来，在GameManagerBehavior中增加一个属性来维护玩家的生命值：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> health;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Health</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> health; &#125;</span><br><span class="line">    <span class="keyword">set</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//1 如果收到攻击，则摇晃一下摄像头（屏幕会跟着晃动，提醒玩家）</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">value</span> &lt; health)</span><br><span class="line">        &#123;</span><br><span class="line">            Camera.main.GetComponent&lt;CameraShake&gt;().Shake();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2 更新生命值和显示的文本</span></span><br><span class="line">        health = <span class="keyword">value</span>;</span><br><span class="line">        healthLabel.text = <span class="string">"HEALTH: "</span> + health;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3 玩家挂了的逻辑</span></span><br><span class="line">        <span class="keyword">if</span>(health &lt;= <span class="number">0</span> &amp;&amp; !gameOver)</span><br><span class="line">        &#123;</span><br><span class="line">            gameOver = <span class="keyword">true</span>;</span><br><span class="line">            GameObject gameOverText = GameObject.FindGameObjectWithTag(<span class="string">"GameOver"</span>);</span><br><span class="line">            gameOverText.GetComponent&lt;Animator&gt;().SetBool(<span class="string">"gameOver"</span>, <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4 更新代表生命值的饼干</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;healthIndicator.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&lt; health)</span><br><span class="line">            &#123;</span><br><span class="line">                healthIndicator[i].SetActive(<span class="keyword">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                healthIndicator[i].SetActive(<span class="keyword">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个用来管理玩家的生命值，再一次的，关键的逻辑代码在setter方法中：</p>
+<ol>
+<li>如果要减少玩家的生命值，则使用CameraShake组件来创造一个晃动的效果。这个脚本（CameraShake）被包含在工程项目中，但不会在本教程中介绍。</li>
+<li>更新私有变量和生命值的文本标签。</li>
+<li>如果生命值将为了0并且游戏尚未结束，则设置gameOver为true，并触发GameOver动画。</li>
+<li>移除被敌人吃掉的饼干，这里简单的使用了SetActive(false)，当生命值恢复时，可以再使能它使饼干回来。</li>
+</ol>
+<p>在<code>Start()</code>中初始化<code>Health</code>:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Health = <span class="number">5</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这里在游戏开始时，玩家有5点的生命值。</p>
+<p>有了这个属性，就可以在敌人抵达饼干的位置时，更新玩家的生命值。保存这个脚本，切换到MoveEnemy.cs。</p>
+<h4 id="u66F4_u65B0_u751F_u547D_u503C"><a href="#u66F4_u65B0_u751F_u547D_u503C" class="headerlink" title="更新生命值"></a>更新生命值</h4><p>为了更新玩家的生命值，在<code>Update</code>方法中找到<code>// TODO: deduct health</code>的注释，并用下面的代码替换:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GameManagerBehavior gameManager = GameObject.Find(<span class="string">"GameManager"</span>).GetComponent&lt;GameManagerBehavior&gt;();</span><br><span class="line">gameManager.Health -= <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这里拿到<code>GameManagerBehavior</code>并将<code>Health</code>减1。<br>保存脚本文件，返回Unity。</p>
+<p>在Hierarchy中选中GameManager并将Health Label设置为HealthLabel。</p>
+<p>Hierarchy中，展开Cookie并拖拽它的五个子节点HealthIndicator，到GameManager的 Health Indicator数组。</p>
+<p>开始游戏，并等到敌人到达饼干的位置，啥也不干，等到你被打死（。。。）</p>
+<p><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/cookie-attack.gif" alt="gif"></p>
+<h3 id="u602A_u517D_u4E4B_u6218_uFF0C_u602A_u517D_u7684_u590D_u4EC7"><a href="#u602A_u517D_u4E4B_u6218_uFF0C_u602A_u517D_u7684_u590D_u4EC7" class="headerlink" title="怪兽之战，怪兽的复仇"></a>怪兽之战，怪兽的复仇</h3><p>是时候开战啦，让守卫饼干的怪兽和试图吃饼干的虫子开战。</p>
+<p>还需要以下这些工作：</p>
+<ul>
+<li>一个生命值条，让玩家清楚的知道敌人孰强孰弱</li>
+<li>检测怪兽攻击范围内的虫子</li>
+<li>向哪个虫子开火</li>
+<li>许多的子弹</li>
+</ul>
+<h4 id="u654C_u4EBA_u7684_u751F_u547D_u503C_u6761"><a href="#u654C_u4EBA_u7684_u751F_u547D_u503C_u6761" class="headerlink" title="敌人的生命值条"></a>敌人的生命值条</h4><p> 我们将使用两张图片来实现生命值条，一个深色的背景和一个稍微浅绿色的条，根据敌人的生命值来调整浅绿色条的比例。</p>
+<p>从Project Browser中拖拽Prefabs\Enemy到场景中。<br>然后拖拽Images\Objects\HealthBarBackground到Enemy上，使其成为Enemy的子节点。<br>在Inspector中, 设置HealthBarBackground的位置为(0, 1, 0)。</p>
+<p>然后，在 Project Browser中选中Images\Objects\HealthBar，并确保他的Pivot被设置为Left，然后在Hierarchy中添加它为Enemy的子节点，并设置它的位置为(-0.63, 1, -1)，设置X Scale为125。</p>
+<p>新建一个新的C#脚本，重命名为HealthBar，然后挂到HealthBar上，稍后，我们将调整生命条的长度。</p>
+<p>在Hierarchy中选中Enemy，确保它的位置为(20, 0, 0)。</p>
+<p>在Inspector面板的顶部，点击Apply按钮保存刚刚的修改。最后将Enemy从Hierarchy上删除。</p>
+<p><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-07-at-11.37.12.png" alt="img"></p>
+<p>重复上面的步骤，给Prefabs\Enemy2加上生命值条。</p>
+<h4 id="u8C03_u6574_u751F_u547D_u503C_u6761_uFF08_u8840_u6761_uFF09_u7684_u957F_u5EA6"><a href="#u8C03_u6574_u751F_u547D_u503C_u6761_uFF08_u8840_u6761_uFF09_u7684_u957F_u5EA6" class="headerlink" title="调整生命值条（血条）的长度"></a>调整生命值条（血条）的长度</h4><p>在代码编辑器中打开HealthBar.cs，添加下面的变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">float</span> maxHealth = <span class="number">100</span>; <span class="comment">//敌人的最大生命值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">float</span> currentHealth = <span class="number">100</span>; <span class="comment">//敌人的当前生命值</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> originalScale; <span class="comment">//记录生命值条的初始大小</span></span><br></pre></td></tr></table></figure></p>
+<p><code>maxHealth</code>记录敌人的最大生命值，<code>currentHealth</code>记录敌人当前的生命值，最后使用<code>originalScale</code>记录生命条的初始大小。</p>
+<p>在<code>Start()</code>方法中，给<code>originalScale</code>一个初始值：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> <span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    originalScale = gameObject.transform.localScale.x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们保存了<code>localScale.x</code>的值。</p>
+<p>在<code>Update()</code>方法中，通过下面的代码设置血条的大小：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void Update()</span><br><span class="line">&#123;</span><br><span class="line">    Vector3 tmpScale = gameObject.transform.localScale<span class="comment">;</span></span><br><span class="line">    tmpScale.x = currentHealth / maxHealth * originalScale<span class="comment">;</span></span><br><span class="line">    gameObject.transform.localScale = tmpScale<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先，我们把<code>localScale</code>拷贝到了一个临时变量，因为我们将紧紧修改它的x的值，然后根据敌人现在的生命值计算新的x的值，最后将前面的临时变量赋值回<code>localScale</code>。<br>保存脚本文件，在Unity中运行游戏，我们将看到敌人的血条了，像下面这样：<br><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-06-at-10.24.48.png" alt="img"></p>
+<p>在游戏运行时, 在Hierarchy面板中展开Enemy(Clone)对象，然后选中它的HealthBar子节点， 改变当前生命的数值，检查血条的变化：<br><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/AdjustHealthbar.gif" alt="gif"></p>
+<h4 id="u8FFD_u8E2A_u653B_u51FB_u8303_u56F4_u5185_u7684_u654C_u4EBA"><a href="#u8FFD_u8E2A_u653B_u51FB_u8303_u56F4_u5185_u7684_u654C_u4EBA" class="headerlink" title="追踪攻击范围内的敌人"></a>追踪攻击范围内的敌人</h4><p>现在我们的怪兽需要知道瞄准那个敌人。在我们实现之前，需要对怪兽和敌人做一些前期工作。</p>
+<p>在Project Browser中选中Prefabs\Monster，然后在Inspector面板中添加一个Circle Collider 2D组件。<br>设置刚刚添加的碰撞器的半径为2.5，这将是怪兽的攻击范围。</p>
+<p>勾选上Is Trigger属性，这样的话其他对象就能穿过这片区域，而不会是直接撞上。<br>最后，在Inspector面板的顶部, 设置Monster的层为Ignore Raycast，在弹出来的对话框中，选择” Yes, change children”(将更改应用到子节点)，如果我们不忽略光线投射(raycast)，那么碰撞器将会响应点击事件，而这将带来怪兽会挡住下面的空位(openspot)的事件.<br><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-05-um-14.47.15.png" alt="img"></p>
+<p>为了能够在碰撞器区域范围内检测到敌人，也需要给敌人添加一个碰撞器和刚体(rigid body)，因为Unity只有当一个碰撞器被附加的刚体时，才回触发<code>trigger</code>事件。</p>
+<p>在Project Browser中选中Prefabs\Enemy， 添加一个Rigid Body 2D组件，同时选中Is Kinematic，这样该物体不应该受到物理的影响。<br>再添加一个Circle Collider 2D组件，设置Radius为1， 重复上面的步骤修改Prefabs\Enemy 2。</p>
+<p>现在触发器已经设置完毕了, 怪兽可以检测敌人是否进入攻击范围内了。<br>我们还需要一个东西: 当敌人被消灭时，一个脚本来通知我们怪兽停止攻击。<br>新建一个名为EnemyDestructionDelegate的C#脚本，并挂载到Enemy和Enemy2 prefab上。<br>打开EnemyDestructionDelegate.cs，增加下面的委托声明：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">EnemyDelegate</span>(<span class="params">GameObject enemy</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> EnemyDelegate enemyDelegate;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们创建了一个委托（一个方法的容器，可以被当做变量传递）。</p>
+<p>增加下面的方法：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnDestroy</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (enemyDelegate != <span class="keyword">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        enemyDelegate(gameObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在销毁一个游戏对象时，Unity会自动调用上面的方法，在这个方法里检查委托是否为空。如果不为空，则用<code>gameObject</code>作为参数调用这个委托的方法。这样一来，所有的注册了的监听者都能知道敌人已经被销毁了。<br>保存脚本文件，返回Unity。</p>
+<h4 id="u602A_u517D_u4EEC_u5F00_u706B_u5427_uFF08Give_Monsters_a_License_to_Kill_uFF09"><a href="#u602A_u517D_u4EEC_u5F00_u706B_u5427_uFF08Give_Monsters_a_License_to_Kill_uFF09" class="headerlink" title="怪兽们开火吧（Give Monsters a License to Kill）"></a>怪兽们开火吧（Give Monsters a License to Kill）</h4><p>现在怪兽们可以检测攻击范围内的敌人啦，新建一个名为ShootEnemies的C#脚本，挂载到Monster prefab上。</p>
+<p>打开ShootEnemies.cs，添加下面的using语句来使用泛型：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">using</span> <span class="tag">System</span><span class="class">.Collections</span><span class="class">.Generic</span>;</span><br></pre></td></tr></table></figure></p>
+<p>添加一个变量来保存攻击范围内的敌人:<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">List</span>&lt;GameObject&gt; enemiesInRange;</span><br></pre></td></tr></table></figure></p>
+<p>我们将在<code>enemiesInRange</code>中保存所有在攻击范围内的敌人的引用.<br>在<code>Start()</code>方法中初始化这个变量：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enemiesInRange = <span class="keyword">new</span> <span class="built_in">List</span>&lt;GameObject&gt;(); <span class="comment">//初始化为空的列表</span></span><br></pre></td></tr></table></figure></p>
+<p>在开始，没有任何敌人是在攻击范围内的，所以用空的列表初始化。<br>添加下面的代码来填充<code>enemiesInRange</code>列表：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 当敌人被销毁时，从enemiesInRange列表中移除</span></span><br><span class="line"><span class="literal">void</span> onEnemyDestroy(GameObject enemy)</span><br><span class="line">&#123;</span><br><span class="line">    enemiesInRange<span class="built_in">.</span>Remove(enemy);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="literal">void</span> OnTriggerEnter2D(Collider2D other)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//2 如果碰撞检测的另一个对象是敌人，则加入到列表，同时注册enemyDelegate</span></span><br><span class="line">    <span class="keyword">if</span> (other<span class="built_in">.</span>gameObject<span class="built_in">.</span><span class="built_in">tag</span><span class="built_in">.</span><span class="keyword">Equals</span>(<span class="string">"Enemy"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        enemiesInRange<span class="built_in">.</span>Add(other<span class="built_in">.</span>gameObject);</span><br><span class="line">        EnemyDestructionDelegate del = other<span class="built_in">.</span>gameObject<span class="built_in">.</span>GetComponent&lt;EnemyDestructionDelegate&gt;();</span><br><span class="line">        del<span class="built_in">.</span>enemyDelegate += onEnemyDestroy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="literal">void</span> OnTriggerExit2D(Collider2D other)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//3 如果超出了范围，且另一个对象是敌人， 则移除列表，并撤销enemyDelegate的注册</span></span><br><span class="line">    <span class="keyword">if</span> (other<span class="built_in">.</span>gameObject<span class="built_in">.</span><span class="built_in">tag</span><span class="built_in">.</span><span class="keyword">Equals</span>(<span class="string">"Enemy"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        enemiesInRange<span class="built_in">.</span>Remove(other<span class="built_in">.</span>gameObject);</span><br><span class="line">        EnemyDestructionDelegate del = other<span class="built_in">.</span>gameObject<span class="built_in">.</span>GetComponent&lt;EnemyDestructionDelegate&gt;();</span><br><span class="line">        del<span class="built_in">.</span>enemyDelegate -= onEnemyDestroy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>在<code>OnEnemyDestroy</code>，我们将敌人从<code>enemiesInRange</code>移除，当敌人进入到怪物的触发区域内时，<code>OnTriggerEnter2D</code>会被调用。</li>
+<li>然后我们将敌人加入到<code>enemiesInRange</code>，同时注册<code>EnemyDestructionDelegate</code>，这确保了当敌人被销毁时，<code>OnEnemyDestroy</code>会被自动调用，我们当然不喜欢在已经挂了的敌人上浪费弹药。</li>
+<li>在<code>OnTriggerExit2D</code>我们将敌人从<code>enemiesInRange</code>移除，同时撤销监听<code>EnemyDestructionDelegate</code>。现在我们可以搞清楚哪些敌人在攻击范围内了。</li>
+</ol>
+<p>保存脚本，在Unity中运行游戏，为了检测能否正常工作，放置一个怪兽，选中它，并在Inspector中观察<code>enemiesInRange</code>列表的变化！</p>
+<h4 id="u9009_u4E00_u4E2A_u76EE_u6807"><a href="#u9009_u4E00_u4E2A_u76EE_u6807" class="headerlink" title="选一个目标"></a>选一个目标</h4><p>当多个敌人出现在攻击范围之内时，选中哪个作为目标呢？<br>当然，是攻击离饼干最近的那个。</p>
+<p>打开MoveEnemy.cs，添加下面的方法：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public float distanceToGoal()</span><br><span class="line">&#123;</span><br><span class="line">    float <span class="built_in">distance</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">distance</span> += Vector3.<span class="built_in">Distance</span>(gameObject.transform.<span class="built_in">position</span>, <span class="built_in">waypoints</span>[<span class="built_in">currentWaypoint</span> + <span class="number">1</span>].transform.<span class="built_in">position</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (var i = <span class="built_in">currentWaypoint</span> + <span class="number">1</span>; i &lt; <span class="built_in">waypoints</span>.Length - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 startPosition = <span class="built_in">waypoints</span>[i].transform.<span class="built_in">position</span>;</span><br><span class="line">        Vector3 endPosition = <span class="built_in">waypoints</span>[i + <span class="number">1</span>].transform.<span class="built_in">position</span>;</span><br><span class="line">        <span class="built_in">distance</span> += Vector3.<span class="built_in">Distance</span>(startPosition, endPosition);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return <span class="built_in">distance</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码计算了敌人剩下路段的距离，通过使用<code>Distance</code>方法计算两个<code>Vector3</code>实例之间的距离。</p>
+<p>我们稍后将使用这个方法来找到攻击的目标，但是现在我们的怪兽还是没有装备武器呢，先解决这个。</p>
+<p><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2012/07/yunofire.jpg" alt="img"></p>
+<p>保存脚本文件，返回Unity准备开始准备子弹。</p>
+<h4 id="u7ED9_u602A_u517D_u5206_u914D_u5B50_u5F39_u2014_u5F88_u591A_u7684_u5B50_u5F39_uFF01"><a href="#u7ED9_u602A_u517D_u5206_u914D_u5B50_u5F39_u2014_u5F88_u591A_u7684_u5B50_u5F39_uFF01" class="headerlink" title="给怪兽分配子弹—很多的子弹！"></a>给怪兽分配子弹—很多的子弹！</h4><p>在Project Browser中拖拽Images/Objects/Bullet1到场景中，设置z值为-2，x和y的值随意，因为我们每次在实例化子弹时都将设置。</p>
+<p>新建一个名为BulletBehavior的脚本，添加下面的变量 ：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">float</span> speed = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> damage;</span><br><span class="line"><span class="keyword">public</span> GameObject <span class="keyword">target</span>;</span><br><span class="line"><span class="keyword">public</span> Vector3 startPosition;</span><br><span class="line"><span class="keyword">public</span> Vector3 targetPosition;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> distance;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> startTime;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> GameManagerBehavior gameManager;</span><br></pre></td></tr></table></figure></p>
+<p><code>speed</code>定义了子弹飞行的速度，<code>damage</code>则是伤害值。<br><code>target</code>, <code>startPosition</code>, 和<code>targetPosition</code>决定了子弹的方向。<br><code>distance</code>和<code>startTime</code>记录子弹的当前位置，当玩家消灭一个敌人时，用<code>gameManager</code>来奖励玩家。</p>
+<p>在<code>Start()</code>方法中初始化:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">startTime</span> = Time.time;</span><br><span class="line"><span class="title">distance</span> = Vector3.Distance(startPosition, targetPosition);</span><br><span class="line"><span class="title">GameObject</span> gm = GameObject.Find(<span class="string">"GameManager"</span>);</span><br><span class="line"><span class="title">gameManager</span> = gm.GetComponent&lt;GameManagerBehavior&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>将<code>startTime</code>设置为当前的时间，并计算开始位置和目标位置之间的距离，同时像之前一样拿到<code>GameManagerBehavior</code>的引用。<br>在<code>Update()</code>方法中，添加下面的代码来控制子弹的移动：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 </span></span><br><span class="line">float timeInterval = <span class="built_in">Time</span>.<span class="built_in">time</span> - startTime;</span><br><span class="line">gameObject.transform.<span class="built_in">position</span> = Vector3.Lerp(startPosition, targetPosition, timeInterval*<span class="built_in">speed</span>/<span class="built_in">distance</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="keyword">if</span> (gameObject.transform.<span class="built_in">position</span>.Equals(targetPosition))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (target != null)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//3</span></span><br><span class="line">        Transform healthBarTransform = target.transform.FindChild(<span class="string">"HealthBar"</span>);</span><br><span class="line">        HealthBar healthBar = healthBarTransform.gameObject.GetComponent&lt;HealthBar&gt;();</span><br><span class="line">        healthBar.currentHealth -= Mathf.<span class="built_in">Max</span>(<span class="built_in">damage</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4</span></span><br><span class="line">        <span class="keyword">if</span> (healthBar.currentHealth &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Destroy(target);</span><br><span class="line">            AudioSource audioSource = target.GetComponent&lt;AudioSource&gt;();</span><br><span class="line">            AudioSource.PlayClipAtPoint(audioSource.clip, transform.<span class="built_in">position</span>);</span><br><span class="line"></span><br><span class="line">            gameManager.Gold += <span class="number">50</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Destroy(gameObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>我们通过使用<code>Vector3.Lerp</code>来在开始和结束位置做插值来计算子弹新的子弹。</li>
+<li>如果子弹抵达了目标位置，则验证目标是否还存在。</li>
+<li>获取目标的HealthBar组件，并用子弹的伤害值减少相应的生命值。</li>
+<li>如果敌人的生命值将为了0，则销毁敌人，播放一个声音特效并给玩家奖励相应的金币。</li>
+</ol>
+<p>保存脚本文件，并返回Unity。</p>
+<h4 id="u83B7_u5F97_u66F4_u5927_u7684_u5B50_u5F39"><a href="#u83B7_u5F97_u66F4_u5927_u7684_u5B50_u5F39" class="headerlink" title="获得更大的子弹"></a>获得更大的子弹</h4><p>如果我们的怪兽在升级后，能获取更大的子弹是不是很酷。当然是的哈。幸运的是，这也很好实现。</p>
+<p>在Hierarchy中，拖拽Bullet1到Project标签页里面来创建一个子弹的prefab。<br>删除场景中的Bullet1对象，我们不再需要他啦。</p>
+<p>复制Bullet1 prefab两次（快捷键Ctrl+ D）,分别命名为Bullet2和Bullet3。<br>选中Bullet2，在Inspector面板中，设置它的Sprite Renderer组件的Sprite属性为Images/Objects/Bullet2，这将使Bullet2看起来别Bullet1更大一些。<br>重复上面的步骤设置Bullet3的sprite为Images/Objects/Bullet3。<br>接下来，设置子弹的伤害值。</p>
+<p>在Project标签页中选中Bullet1 prefab，在Inspector面板汇总，找到Bullet Behavior组件，并分别设置Bullet1的Damage为10，Bullet2的Damage为15，Bullet1的Damage为20，或者其他的你喜欢的任意值。</p>
+<p><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-12.39.32.png" alt="img"></p>
+<h4 id="u7ED9_u5B50_u5F39_u5206_u7EA7_u522B"><a href="#u7ED9_u5B50_u5F39_u5206_u7EA7_u522B" class="headerlink" title="给子弹分级别"></a>给子弹分级别</h4><p>将不同的子弹分配给不同的怪兽级别，使高等级的怪兽更快的消灭敌人。<br>打开MonsterData.cs脚本，在类<code>MonsterLevel</code>增加下面的变量:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> GameObject bullet;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">float</span> fireRate;</span><br></pre></td></tr></table></figure></p>
+<p>这将为每个怪兽级别设置子弹的prefab和发射频率，保存脚本并返回Unity去完成设置工作。<br>在Project Browser中选中Monster prefab，在Inspector中，展开Monster Data组件的Levels属性。设置每个元素的Fire Rate为1，然后分别为每个元素的Bullet属性设置为Bullet1, Bullet2 和Bullet3。</p>
+<p>你的怪兽级别设置应该像下面这样：<br><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/06/MonsterData-with-bullets.png" alt="img"></p>
+<h4 id="u5F00_u706B"><a href="#u5F00_u706B" class="headerlink" title="开火"></a>开火</h4><p>打开ShootEnemies.cs，添加下面的变量:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> lastShotTime;</span><br><span class="line"><span class="keyword">private</span> MonsterData monsterData;</span><br></pre></td></tr></table></figure></p>
+<p>这些变量记录怪兽最近一次开火的时间，同时包含怪兽子弹类型、发送频率的MonsterData。<br>在<code>Start()</code>方法中初始化这些变量：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lastShotTime = Time.time<span class="comment">;</span></span><br><span class="line">monsterData = gameObject.GetComponentInChildren&lt;MonsterData&gt; ()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里我们将<code>lastShotTime</code>初始化为了当前时间，并拿到了当前游戏对象的<code>MonsterData</code>组件。<br>添加下面的方法实现射击：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">void Shoot(Collider2D target)</span><br><span class="line">&#123;</span><br><span class="line">    GameObject bulletPrefab = monsterData.CurrentLevel.bullet<span class="comment">;</span></span><br><span class="line">    // 1 </span><br><span class="line">    Vector3 startPosition = gameObject.transform.position<span class="comment">;</span></span><br><span class="line">    Vector3 targetPosition = target.transform.position<span class="comment">;</span></span><br><span class="line">    startPosition.z = bulletPrefab.transform.position.z<span class="comment">;</span></span><br><span class="line">    targetPosition.z = bulletPrefab.transform.position.z<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    // 2 </span><br><span class="line">    GameObject newBullet = (GameObject)Instantiate (bulletPrefab)<span class="comment">;</span></span><br><span class="line">    newBullet.transform.position = startPosition<span class="comment">;</span></span><br><span class="line">    BulletBehavior bulletComp = newBullet.GetComponent&lt;BulletBehavior&gt;()<span class="comment">;</span></span><br><span class="line">    bulletComp.target = target.gameObject<span class="comment">;</span></span><br><span class="line">    bulletComp.startPosition = startPosition<span class="comment">;</span></span><br><span class="line">    bulletComp.targetPosition = targetPosition<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    // 3 </span><br><span class="line">    Animator animator = </span><br><span class="line">      monsterData.CurrentLevel.visualization.GetComponent&lt;Animator&gt; ()<span class="comment">;</span></span><br><span class="line">    animator.SetTrigger ("fireShot")<span class="comment">;</span></span><br><span class="line">    AudioSource audioSource = gameObject.GetComponent&lt;AudioSource&gt;()<span class="comment">;</span></span><br><span class="line">    audioSource.PlayOneShot(audioSource.clip)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>获取子弹的开始和目标位置，同时使用bulletPrefab的z-Position值设置子弹的z-Position的值。还记得早些时候我们已经设置了bulletPrefab的z-Position的值，来确保子弹在怪兽的下面一层，但是在敌人的上面一层。</li>
+<li>使用bulletPrefab实例化一个子弹实例，然后给他设置<code>tartPosition</code>和<code>targetPosition</code>。</li>
+<li>当怪兽射击是，使用一个射击的动画和激光的音效，来提高游戏的体验</li>
+</ol>
+<h4 id="u7EFC_u5408_u8D77_u6765"><a href="#u7EFC_u5408_u8D77_u6765" class="headerlink" title="综合起来"></a>综合起来</h4><p>是时候把上面的东西综合起来啦，选定目标并使怪兽盯着它！</p>
+<p><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/watchingYou.png" alt="img"><br>在ShootEnemies.cs脚本，增加下面的代码到<code>Update()</code>:</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">GameObject target = null;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line">float minimalEnemyDistance = float.MaxValue;</span><br><span class="line"><span class="keyword">foreach</span> (var enemy <span class="built_in">in</span> enemiesInRange)</span><br><span class="line">&#123;</span><br><span class="line">    float distanceToGoal = enemy.GetComponent&lt;MoveEnemy&gt;().distanceToGoal();</span><br><span class="line">    <span class="keyword">if</span> (distanceToGoal &lt; minimalEnemyDistance)</span><br><span class="line">    &#123;</span><br><span class="line">        target = enemy;</span><br><span class="line">        minimalEnemyDistance = distanceToGoal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="keyword">if</span> (target != null)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Time</span>.<span class="built_in">time</span> - lastShotTime &gt; monsterData.CurrentLevel.fireRate)</span><br><span class="line">    &#123;</span><br><span class="line">        Shoot(target.GetComponent&lt;Collider2D&gt;());</span><br><span class="line">        lastShotTime = <span class="built_in">Time</span>.<span class="built_in">time</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    Vector3 <span class="built_in">direction</span> = gameObject.transform.<span class="built_in">position</span> - target.transform.<span class="built_in">position</span>;</span><br><span class="line">    gameObject.transform.rotation = Quaternion.AngleAxis(Mathf.<span class="built_in">Atan2</span>(<span class="built_in">direction</span>.y, <span class="built_in">direction</span>.x) * <span class="number">180</span> / Mathf.<span class="built_in">PI</span>, new Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>来一步一步的看：</p>
+<ol>
+<li>选定目标敌人，一开始将<code>minimalEnemyDistance</code>设置为可能的最大值，然后遍历攻击范围内的所有敌人，当一个敌人距饼干的距离比当前的最短距离小时，把它作为新的目标。</li>
+<li>当已经经过的时间大于发射频率时，调用<code>Shoot</code>方法，同时使用当前时间更新<code>lastShotTime</code>。</li>
+<li>计算怪兽和敌人之间的旋转角度，然后使用该角度旋转怪兽，使它面向敌人。</li>
+</ol>
+<p>保存所有的脚本文件，回到Unity开始游戏，现在怪兽可以保护我们的饼干了。</p>
+<p>DONE!</p>
+<p><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/04/ezgif.com-crop3.gif" alt="gif"></p>
+<h3 id="u8FD8_u80FD_u505A_u4E9B_u4EC0_u4E48"><a href="#u8FD8_u80FD_u505A_u4E9B_u4EC0_u4E48" class="headerlink" title="还能做些什么"></a>还能做些什么</h3><p>你可以从<a href="http://cdn5.raywenderlich.com/wp-content/uploads/2015/07/TowerDefense-Part2-Complete.zip" target="_blank" rel="external">这里</a>下载到完整的完成后项目。</p>
+<p>Wow，自此你已经做了很多来完成一个很酷的游戏。<br>这里有一些你可以进一步做的工作：</p>
+<ol>
+<li>更多的怪兽和敌人类型</li>
+<li>多条路径</li>
+<li>不同的游戏难度</li>
+</ol>
+<p>上面的每一条都会使我们的游戏更有吸引力~</p>
+<blockquote>
+<p>译注：两篇教程已经翻译完啦，今后可能继续使用该教程的项目进行像UI、打包到手机等。个人校验难免有纰漏，如果发现问题请留言指明，谢谢。</p>
+<p>原文地址: <a href="http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2" target="_blank" rel="external">http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/28/keys-in-children-components-are-important/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react中子组件的keys很重要</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="create-tower-defense-game-unity-part-2" data-title="使用unity创建塔防游戏(译)(part2)" data-url="http://le0zh.github.io/2016/02/03/create-tower-defense-game-unity-part-2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"le0zh"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 le0zh
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
