@@ -1,10 +1,18 @@
-[译]使用unity创建塔防游戏_part2.md
+title: 使用unity创建塔防游戏(译)(part2)
+tags:
+  - unity
+categories:
+  - game
+date: 2016-02-03 12:40:12
+---
 
 欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在[第一部分](http://le0zh.github.io/2016/01/21/create-tower-defense-game-unity-part-1/)中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。
 
 然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。
 
 ![img](http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-26-at-18.29.53.png)
+
+<!-- more --> 
 
 ### 开始
 在Unity中，打开在第一部分中完成的项目，如果你是从这篇教程才开始的，可以直接下载并打开[TowerDefence-Part2-Starter](http://7xl2vf.com1.z0.glb.clouddn.com/td/TowerDefense-Part2-Starter.7z)项目。
@@ -601,13 +609,101 @@ public float fireRate;
 private float lastShotTime;
 private MonsterData monsterData;
 ```
-这项变零记录怪兽最近一次开火的时间，同时包含怪兽子弹类型、发送频率的MonsterData。
-
-As their names suggest, these variables keep track of when this monster last fired, as well the MonsterData structure that includes information about this monster’s bullet type, fire rate, etc.
-Assign values to those fields in Start():
+这些变量记录怪兽最近一次开火的时间，同时包含怪兽子弹类型、发送频率的MonsterData。
+在`Start()`方法中初始化这些变量：
+```
 lastShotTime = Time.time;
 monsterData = gameObject.GetComponentInChildren<MonsterData> ();
-Here you set lastShotTime to the current time and get access to this object’s MonsterData component.
-Add the following method to implement shooting:
+```
+这里我们将`lastShotTime`初始化为了当前时间，并拿到了当前游戏对象的`MonsterData`组件。
+添加下面的方法实现射击：
+```
+void Shoot(Collider2D target)
+{
+    GameObject bulletPrefab = monsterData.CurrentLevel.bullet;
+    // 1 
+    Vector3 startPosition = gameObject.transform.position;
+    Vector3 targetPosition = target.transform.position;
+    startPosition.z = bulletPrefab.transform.position.z;
+    targetPosition.z = bulletPrefab.transform.position.z;
+
+    // 2 
+    GameObject newBullet = (GameObject)Instantiate (bulletPrefab);
+    newBullet.transform.position = startPosition;
+    BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
+    bulletComp.target = target.gameObject;
+    bulletComp.startPosition = startPosition;
+    bulletComp.targetPosition = targetPosition;
+
+    // 3 
+    Animator animator = 
+      monsterData.CurrentLevel.visualization.GetComponent<Animator> ();
+    animator.SetTrigger ("fireShot");
+    AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+    audioSource.PlayOneShot(audioSource.clip);
+}
+```
+1. 获取子弹的开始和目标位置，同时使用bulletPrefab的z-Position值设置子弹的z-Position的值。还记得早些时候我们已经设置了bulletPrefab的z-Position的值，来确保子弹在怪兽的下面一层，但是在敌人的上面一层。
+2. 使用bulletPrefab实例化一个子弹实例，然后给他设置`tartPosition`和`targetPosition`。
+3. 当怪兽射击是，使用一个射击的动画和激光的音效，来提高游戏的体验
+
+#### 综合起来
+是时候把上面的东西综合起来啦，选定目标并使怪兽盯着它！
+
+![img](http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/watchingYou.png)
+在ShootEnemies.cs脚本，增加下面的代码到`Update()`:
+
+```
+GameObject target = null;
+
+//1
+float minimalEnemyDistance = float.MaxValue;
+foreach (var enemy in enemiesInRange)
+{
+    float distanceToGoal = enemy.GetComponent<MoveEnemy>().distanceToGoal();
+    if (distanceToGoal < minimalEnemyDistance)
+    {
+        target = enemy;
+        minimalEnemyDistance = distanceToGoal;
+    }
+}
+
+//2
+if (target != null)
+{
+    if (Time.time - lastShotTime > monsterData.CurrentLevel.fireRate)
+    {
+        Shoot(target.GetComponent<Collider2D>());
+        lastShotTime = Time.time;
+    }
+
+    //3
+    Vector3 direction = gameObject.transform.position - target.transform.position;
+    gameObject.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI, new Vector3(0, 0, 1));
+}
+```
+来一步一步的看：
+1. 选定目标敌人，一开始将`minimalEnemyDistance`设置为可能的最大值，然后遍历攻击范围内的所有敌人，当一个敌人距饼干的距离比当前的最短距离小时，把它作为新的目标。
+2. 当已经经过的时间大于发射频率时，调用`Shoot`方法，同时使用当前时间更新`lastShotTime`。
+3. 计算怪兽和敌人之间的旋转角度，然后使用该角度旋转怪兽，使它面向敌人。
+
+保存所有的脚本文件，回到Unity开始游戏，现在怪兽可以保护我们的饼干了。
+
+DONE!
+
+![gif](http://cdn3.raywenderlich.com/wp-content/uploads/2015/04/ezgif.com-crop3.gif)
+
+### 还能做些什么
+你可以从[这里](http://cdn5.raywenderlich.com/wp-content/uploads/2015/07/TowerDefense-Part2-Complete.zip)下载到完整的完成后项目。
+
+Wow，自此你已经做了很多来完成一个很酷的游戏。
+这里有一些你可以进一步做的工作：
+1. 更多的怪兽和敌人类型
+2. 多条路径
+3. 不同的游戏难度
+
+上面的每一条都会使我们的游戏更有吸引力~
+
+>译注：两篇教程已经翻译完啦，今后可能继续使用该教程的项目进行像UI、打包到手机等。个人校验难免有纰漏，如果发现问题请留言指明，谢谢。
 
 >原文地址: http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2
