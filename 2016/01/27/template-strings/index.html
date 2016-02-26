@@ -18,7 +18,7 @@ template string模">
 Ex：普通的字符串:
 1234var firstName = &apos;Jake&apos;;var lastName = &apos;Rawr&apos;;console.log(&apos;My name is &apos; + firstName + &apos; &apos; + lastName);// My name is Jake Rawr
 template string模">
-<meta property="og:updated_time" content="2016-01-27T03:04:18.750Z">
+<meta property="og:updated_time" content="2016-02-26T08:55:20.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6 template string模板字符串">
 <meta name="twitter:description" content="在ES6中，JS除了传统的字符串，提供了新的template string模板字符串。
@@ -210,6 +210,9 @@ template string模">
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Jake'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Rawr'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'My name is '</span> + firstName + <span class="string">' '</span> + lastName);</span><br><span class="line"><span class="comment">// My name is Jake Rawr</span></span><br></pre></td></tr></table></figure>
 <p>template string模板字符串:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Jake'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Rawr'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;firstName&#125;</span> <span class="subst">$&#123;lastName&#125;</span>`</span>);</span><br><span class="line"><span class="comment">// My name is Jake Rawr</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a> 
+<blockquote>
+<p>注意，注意，template string是用符号 ` 包括起来的，不是单引号也不能是双引号。</p>
+</blockquote>
 <p>我们可以在template string的<code>${}</code>中实现</p>
 <ul>
 <li>不用<code>\n</code>实现多行</li>
