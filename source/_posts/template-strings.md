@@ -27,6 +27,8 @@ console.log(`My name is ${firstName} ${lastName}`);
 
 <!-- more --> 
 
+>注意，注意，template string是用符号 ` 包括起来的，不是单引号也不能是双引号。
+
 我们可以在template string的`${}`中实现
 + 不用`\n`实现多行
 + 简单的逻辑(比如: `1+2`)
