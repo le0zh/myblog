@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 17.5px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/unity/" style="font-size: 12.5px;">unity</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jstips/" style="font-size: 17.5px;">jstips</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/unity/" style="font-size: 12.5px;">unity</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a>
 					</div>
 				</section>
 				
@@ -155,6 +155,73 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-pseudomentatory-parameters-in-ES6-functions" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/13/pseudomentatory-parameters-in-ES6-functions/" class="article-date">
+  	<time datetime="2016-01-13T02:40:12.000Z" itemprop="datePublished">2016-01-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/13/pseudomentatory-parameters-in-ES6-functions/">在ES6函数中模拟必选参数</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在多数编程语言中，函数的参数默认都是必选的，开发者必选要显示的声明参数的可选项。<br>在js中，所有的参数都是可选的。</p>
+<p>但是我们可以利用<a href="http://exploringjs.com/es6/ch_parameter-handling.html#sec_parameter-default-values" target="_blank" rel="external">ES6中的参数默认值</a>的特性，在不改变函数体的情况下确保参数的必选性。</p>
+<p>上代码：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> const _err = function( message )&#123;</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> Error( message );</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> const getSum = <span class="function"><span class="params">(a = _err(<span class="string">'a is not defined'</span>), b = _err(<span class="string">'b is not defined'</span>))</span> =&gt;</span> a + b</span><br><span class="line"></span><br><span class="line">getSum( <span class="number">10</span> ) <span class="regexp">//</span> throws Error, b <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line">getSum( <span class="literal">undefined</span>, <span class="number">10</span> ) <span class="regexp">//</span> throws Error, a <span class="keyword">is</span> <span class="keyword">not</span> define</span><br></pre></td></tr></table></figure></p>
+<p><code>_err</code>是一个立即抛出异常的函数，当没有给函数中的一个参数赋值时，默认值将被使用，所以<code>_err</code>会被调用同时抛出一个异常。</p>
+<blockquote>
+<p>本文是js tips系列，翻译自 <a href="https://github.com/loverajoel/jstips" target="_blank" rel="external">https://github.com/loverajoel/jstips</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jstips/">jstips</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-hoisting" class="article article-type-post" itemscope itemprop="blogPost">
   
