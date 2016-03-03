@@ -1,0 +1,1310 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>unity-tower-defense-tutorial-part-2</title></head><body><article class="markdown-body"><p>[译]使用unity创建塔防游戏_part2.md</p>
+<p>欢迎来到使用unity创建塔防游戏的第二部分，我们将继续使用unity创建一个塔防游戏，在<a href="http://le0zh.github.io/2016/01/21/create-tower-defense-game-unity-part-1/">第一部分</a>中，我们已经可以放置和升级小怪兽了。同时创建了一个向饼干进攻的敌人。</p>
+<p>然而，这时候敌人移动时还不会转向，同时不会攻击。这部分教程中，我们将增加一波敌人，同时武装我们的小怪兽使他们能保卫我们珍贵的饼干。</p>
+<p><img alt="img" src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-26-at-18.29.53.png" /></p>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>开始</h3>
+<p>在Unity中，打开在第一部分中完成的项目，如果你是从这篇教程才开始的，可以直接下载并打开<a href="http://7xl2vf.com1.z0.glb.clouddn.com/td/TowerDefense-Part2-Starter.7z">TowerDefence-Part2-Starter</a>项目。</p>
+<p>从scene文件夹中，打开GameScene。</p>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>旋转敌人</h3>
+<p>在第一部分教程的最后，敌人可以沿着路线移动，但是不能面向前进的方向。在代码编辑器中打开MoveEnemy.cs，添加下面的方法来修正这个问题:<br />
+<pre><code>private void RotateIntoMoveDirection()
+{
+    //1
+    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
+    Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
+    Vector3 newDirection = (newEndPosition - newStartPosition);
+
+    //2
+    float x = newDirection.x;
+    float y = newDirection.y;
+    float rotationAngle = Mathf.Atan2(y, x)*180/Mathf.PI;
+
+    //3
+    GameObject sprite = (GameObject) gameObject.transform.FindChild(&quot;Sprite&quot;).gameObject;
+    sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+}
+</code></pre><br />
+<code>RotateIntoMoveDirection</code>这个方法将会旋转敌人使其永远朝向前进的方向:<br />
+1. 通过用当前的路标位置减去下一个路标位置，得到当前敌人的移动方向。<br />
+2. 使用<code>Mathf.Atan2</code>方法算出新的移动发祥的角度(单位是弧度)，然后将结果转换为角度(使用 <code>180/Mathf.PI</code>转换)。<br />
+3. 最后，得到名为Sprite的子节点，并沿着z轴旋转<code>rotationAngle</code>，请注意，我们只是旋转了Sprite子节点，而不是整个敌人，这样我们稍后会添加的生命值条将会保持水平方向不变。</p>
+<p><img alt="img" src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/calculate-angles.png" /></p>
+<p>在<code>Update()</code>方法中，替换原来的注释<code>// TODO: Rotate into move direction</code>为下面这行代码：<br />
+<pre><code>RotateIntoMoveDirection();
+</code></pre></p>
+<p>保存脚本文件，并返回到Unity中，运行游戏，现在敌人知道面向前进的方向了:<br />
+<img alt="gif" src="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/BugFollowsRoad.gif" /></p>
+<p>只有一个敌人？没什么意思，来一群敌人吧！同时像多数塔防游戏一样，成群的敌人一波一波的来袭！</p>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>通知玩家</h3>
+<p>在成群的敌人进攻之前，我们要通知玩家即将到来的攻击。同时，为什么不在屏幕的上方显示当前的波数呢。</p>
+<p>不止一个的游戏对象需要知道波数的信息，所以我们将它加到GameManamger的GameManagerBehavior组件。</p>
+<p>在代码编辑器中打开GameManagerBehavior.cs并添加下面这两个变量：<br />
+<pre><code>public Text waveLabel;
+public GameObject[] nextWaveLabels;
+</code></pre></p>
+<p>其中<code>waveLabel</code>是在屏幕右上角显示当前波数的对象引用，<code>nextWaveLabels</code>中有连个游戏对象，组合来制作当新的一波敌人开始时的的动画，就像下面这样:<br />
+<img alt="gif" src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/nextWaveAnimation.gif" /></p>
+<p>保存脚本文件，返回Unity，在Hierarcy面板选中GameManager，点击WaveLabel右侧的小圆形按钮，在 Select Text对话框中选中Scene标签页下的WaveLabel。<br />
+<img alt="img" src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/gameManager-with-waves.png" /></p>
+<p>如果玩家游戏失败了，他不应该看到下一波的信息，为了解决这个问题，回到GameManagerBehavior.cs脚本并添加下面的另一个变量:<br />
+<pre><code>public bool gameOver = false;
+</code></pre></p>
+<p>我们将使用<code>gameOver</code>来记录玩家是否已经游戏失败。</p>
+<p>同样，我们将使用属性来保持游戏中的元素在当前回合中的一致性，在GameManagerBehavior中添加下面的代码:<br />
+<pre><code>private int wave;
+
+public int Wave
+{
+    get { return wave; }
+    set
+    {
+        wave = value;
+        if (!gameOver)
+        {
+            for (int i = 0; i &lt; nextWaveLabels.Length; i++)
+            {
+                nextWaveLabels[i].GetComponent&lt;Animator&gt;().SetTrigger(&quot;nextWave&quot;);
+            }
+        }
+        waveLabel.text = &quot;WAVE: &quot; + (wave + 1);
+    }
+}
+</code></pre></p>
+<p>上面创建私有变量、属性、getter方法都是常规的方法，但是再一次的，setter方法有些特殊：<br />
++ 我们使用新的<code>value</code>更新<code>wave</code><br />
++ 然后检查游戏是已经结束，如果还没有结束，则遍历<code>nextWaveLabels</code>（包含Animatro组件的label集合），触发nextWave的动画<br />
++ 最后，设置waveLabel的显示文本为<code>wave + 1</code>，为什么要加1，因为普通玩家不会从0开始数，你懂得。</p>
+<p>在<code>Start()</code>方法中，设置属性的值:<br />
+<pre><code>Wave = 0;
+</code></pre></p>
+<p>我们从0开始计数<code>Wave</code>。<br />
+保存脚本文件，在Unity中运行游戏，现在波数应该能正常的显示为从1开始:<br />
+<img alt="img" src="http://cdn5.raywenderlich.com/wp-content/uploads/2015/06/counting-waves.png" /></p>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>让敌人来的更猛烈些</h3>
+<p>目前，我们还不能创建更多的敌人，同时，我们不能再当前波的敌人被消灭完之前，召唤出下一波的敌人，至少现在不能。</p>
+<p>所以，游戏必须要能区分出当前游戏场景中是否存在敌人，这里Tags是个非常好的用来区分游戏对象的方法。</p>
+<h4 id="tags"><a name="user-content-tags" href="#tags" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>给敌人打上标签(Tags)</h4>
+<p>在Project Browser中选中Enemy prefab，在Inspector面板的顶部，点击Tag下拉框并选中添加Tag（Add Tag）<br />
+<img alt="img" src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/06/Create-Tag.png" /></p>
+<p>创建一个名为Enemy的Tag<br />
+<img alt="img" src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Bildschirmfoto-2015-06-06-um-03.55.00.png" /></p>
+<p>选中Enemy prefab，在Inspector面板中设置其Tag为新创建的Enemy。</p>
+<h4 id="waves"><a name="user-content-waves" href="#waves" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义Waves</h4>
+<p>现在我们需要定义一波的敌人了，在代码编辑器中打开SpawnEnemy.cs，在类<code>SpawnEnemy</code>之前增加下面的定义 ：<br />
+<pre><code>[System.Serializable]
+public class Wave
+{
+    public GameObject enemyPrefab;
+    public float spawnInterval = 2;
+    public int maxEnemies = 20;
+}
+</code></pre><br />
+<code>Wave</code>中有一个<code>enemyPrefab</code>，是用来实例化敌人的基础，<code>spawnInterval</code>用来指定创建敌人的间隔，<code>maxEnemies</code>指定一波敌人的最大数量。</p>
+<p>上面这个类是可序列化的，意味着我们可以在Inspector中改变它的值。<br />
+向<code>SpawnEnemy</code>类中添加下面的变量 ：<br />
+<pre><code>public Wave[] waves;
+public int timeBetweenWaves = 5;
+
+private GameManagerBehavior gameManager;
+
+private float lastSpawnTime;
+private int enemiesSpawned = 0;
+</code></pre></p>
+<p>这里设置了一些用来召唤敌人的变量，跟我们用来使敌人沿着路标移动的那些很相似。我们将在<code>waves</code>中定义游戏中的各个回合的敌人信息，使用<code>enemiesSpawned</code>和<code>lastSpawnTime</code>记录已经召唤出来的敌人个数和召唤的时间。</p>
+<p>玩家需要再杀死一波的敌人之后休息一下，所以设置<code>timeBetweenWaves</code>为5秒。</p>
+<p>在<code>Start()</code>方法中增加下面的内容:<br />
+<pre><code>lastSpawnTime = Time.time;
+gameManager = GameObject.Find(&quot;GameManager&quot;).GetComponent&lt;GameManagerBehavior&gt;();
+</code></pre><br />
+这里我们设置了<code>lastSpawnTime</code>为当前时间，也就是当场景加载完毕脚本开始的时间。<br />
+然后我们用了之前的方式拿到GameManagerBehavior的引用。</p>
+<p>在<code>Update()</code>方法中添加下面的代码：<br />
+<pre><code>//1 拿到当前波数的索引，并检查是否是最后的回合（已经没有敌人了）
+int currentWave = gameManager.Wave;
+if (currentWave &lt; waves.Length)
+{
+    //2 如果不是最后一波，根据当前的时间计算距离上次召唤敌人的间隔
+    float timeInterval = Time.time - lastSpawnTime;
+    float spawnInterval = waves[currentWave].spawnInterval;
+    if (((enemiesSpawned == 0 &amp;&amp; timeInterval &gt; timeBetweenWaves) || timeInterval &gt; spawnInterval) &amp;&amp;
+        enemiesSpawned &lt; waves[currentWave].maxEnemies)
+    {
+        //3 如果当前场景中没有一个敌人，并且间隔时间大于波数的间隔时间，或者已经存在敌人并且间隔时间大于了召唤的间隔
+        // 在上面条件的基础上并且当前的敌人数还没有达到当前波数设定的最多敌人数，则可以进行召唤
+        lastSpawnTime = Time.time;
+        GameObject newEnemy = (GameObject) Instantiate(waves[currentWave].enemyPrefab);
+        newEnemy.GetComponent&lt;MoveEnemy&gt;().waypoints = waypoints;
+        enemiesSpawned++;
+    }
+
+    //4 如果已经召唤出了当前波的所有敌人，则进入下一波的回合
+    if (enemiesSpawned == waves[currentWave].maxEnemies &amp;&amp;
+        GameObject.FindGameObjectWithTag(&quot;Enemy&quot;) == null)
+    {
+        gameManager.Wave++;
+        gameManager.Gold = Mathf.RoundToInt(gameManager.Gold*1.1f);
+        enemiesSpawned = 0;
+        lastSpawnTime = Time.time;
+    }
+}
+//5 如果所有的回合都通过了，则显示游戏胜利的动画
+else
+{
+    gameManager.gameOver = true;
+    GameObject gameOverText = GameObject.FindGameObjectWithTag(&quot;GameWon&quot;);
+    gameOverText.GetComponent&lt;Animator&gt;().SetBool(&quot;gameOver&quot;, true);
+}
+</code></pre><br />
+让我们逐步来看:<br />
+1. 拿到当前波数的索引，并检查是否已经是最后回合（已经没有敌人了）；<br />
+2. 如果还有敌人，计算自从上次召唤敌人到现在的时间间隔，来检查当前时间是否可以召唤敌人，这里有两种情况，首先是即将召唤的敌人是当前回合的第一个敌人，这种情况下检查时间间隔是否大于<code>timeBetweenWaves</code>(回合的间隔时间), 否则，检查时间间隔是否大于<code>spawnInterval</code>(召唤的时间间隔)。无论上面哪种情况，我们要确保还没有召唤出当前回合的所有敌人；<br />
+3. 如果需要，通过实例化一个<code>enemyPrefab</code>召唤出一个敌人，同时增加<code>enemiesSpawned</code>计数；<br />
+4. 检查当前场景中的敌人数，如果敌人已经被干掉完了，则进入下一回合，同时奖励玩家10%的金币；<br />
+5. 如果所有的回合都通过了，则显示游戏胜利的动画。</p>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设置召唤间隔</h4>
+<p>保存脚本文件，并返回Unity。在Hierarchy中选中Road，在Inspector面板中，将Waves的Size属性设置为4，然后，使用Enemy Prefab分别设置所有的四个元素的Enemy属性，同时像下面这样设置<br />
+Spawn Interval和Max Enemies：<br />
++ Element 0: Spawn Interval: 2.5, Max Enemies: 5<br />
++ Element 1: Spawn Interval: 2, Max Enemies: 10<br />
++ Element 2: Spawn Interval: 2, Max Enemies: 15<br />
++ Element 3: Spawn Interval: 1, Max Enemies: 5</p>
+<p>最终的设置应该像下面这张截图一样：<br />
+<img alt="img" src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-01-at-18.46.16.png" /></p>
+<p>当然，你也可以自己随意增加或减少其中的一些设置哈。<br />
+运行游戏，不错。成队的虫子向我们的饼干进发了。。<br />
+<img alt="gif" src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/bugs.gif" /></p>
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>可选的：增加不同的敌人类型</h4>
+<p>现在我们的塔防游戏只有一种类型的敌人，幸运的，在Prefabs文件夹下，有另外一种类型的敌人Enemy2。Speed为3，Tag <br />
+选中Prefabs\Enemy2，并在Inspector面板中增加 MoveEnemy 脚本组件，设置Speed为3，设置Tag为Enemy。现在我们有了这种移动速度很快的虫子敌人啦。</p>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>更新玩家的生命值（慢慢的杀死我。。）</h3>
+<p>现在，尽管虫子大军可以向饼干移动，但是玩家丝毫不会受到伤害。不能这样下去啦，玩家应该在敌人到达饼干时，受到伤害。</p>
+<p><img alt="img" src="http://cdn2.raywenderlich.com/wp-content/uploads/2015/04/LivesStolen2.png" /><br />
+打开GameManagerBehavior.cs脚本文件，增加下面的变量:<br />
+<pre><code>public Text healthLabel;
+public GameObject[] healthIndicator;
+</code></pre></p>
+<p>我们将使用<code>healthLabel</code>控制玩家的生命值显示，使用<code>healthIndicator</code>来控制代表玩家生命值的5个小的绿色的饼干（这比简单的使用一个标签显示生命值更有趣）。</p>
+<h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>管理生命值</h4>
+<p>接下来，在GameManagerBehavior中增加一个属性来维护玩家的生命值：<br />
+<pre><code>private int health;
+public int Health
+{
+    get { return health; }
+    set
+    {
+        //1 如果收到攻击，则摇晃一下摄像头（屏幕会跟着晃动，提醒玩家）
+        if(value &lt; health)
+        {
+            Camera.main.GetComponent&lt;CameraShake&gt;().Shake();
+        }
+
+        //2 更新生命值和显示的文本
+        health = value;
+        healthLabel.text = &quot;HEALTH: &quot; + health;
+
+        //3 玩家挂了的逻辑
+        if(health &lt;= 0 &amp;&amp; !gameOver)
+        {
+            gameOver = true;
+            GameObject gameOverText = GameObject.FindGameObjectWithTag(&quot;GameOver&quot;);
+            gameOverText.GetComponent&lt;Animator&gt;().SetBool(&quot;gameOver&quot;, true);
+        }
+
+        //4 更新代表生命值的饼干
+        for(int i = 0;i&lt;healthIndicator.Length; i++)
+        {
+            if(i&lt; health)
+            {
+                healthIndicator[i].SetActive(true);
+            }
+            else
+            {
+                healthIndicator[i].SetActive(false);
+            }
+        }
+    }
+}
+</code></pre><br />
+这个用来管理玩家的生命值，再一次的，关键的逻辑代码在setter方法中：<br />
+1. 如果要减少玩家的生命值，则使用CameraShake组件来创造一个晃动的效果。这个脚本（CameraShake）被包含在工程项目中，但不会在本教程中介绍。<br />
+2. 更新私有变量和生命值的文本标签。<br />
+3. 如果生命值将为了0并且游戏尚未结束，则设置gameOver为true，并触发GameOver动画。<br />
+4. 移除被敌人吃掉的饼干，这里简单的使用了SetActive(false)，当生命值恢复时，可以再使能它使饼干回来。</p>
+<p>在<code>Start()</code>中初始化<code>Health</code>:<br />
+<pre><code>Health = 5;
+</code></pre></p>
+<p>这里在游戏开始时，玩家有5点的生命值。</p>
+<p>有了这个属性，就可以在敌人抵达饼干的位置时，更新玩家的生命值。保存这个脚本，切换到MoveEnemy.cs。</p>
+<h4 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>更新生命值</h4>
+<p>为了更新玩家的生命值，在<code>Update</code>方法中找到<code>// TODO: deduct health</code>的注释，并用下面的代码替换:<br />
+<pre><code>GameManagerBehavior gameManager = GameObject.Find(&quot;GameManager&quot;).GetComponent&lt;GameManagerBehavior&gt;();
+gameManager.Health -= 1;
+</code></pre><br />
+这里拿到<code>GameManagerBehavior</code>并将<code>Health</code>减1。<br />
+保存脚本文件，返回Unity。</p>
+<p>在Hierarchy中选中GameManager并将Health Label设置为HealthLabel。</p>
+<p>Hierarchy中，展开Cookie并拖拽它的五个子节点HealthIndicator，到GameManager的 Health Indicator数组。</p>
+<p>开始游戏，并等到敌人到达饼干的位置，啥也不干，等到你被打死（。。。）</p>
+<p><img alt="gif" src="http://cdn3.raywenderlich.com/wp-content/uploads/2015/07/cookie-attack.gif" /></p>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怪兽之战，怪兽的复仇</h3>
+<p>是时候开战啦，让守卫饼干的怪兽和试图吃饼干的虫子开战。</p>
+<p>还需要以下这些工作：<br />
++ 一个生命值条，让玩家清楚的知道敌人孰强孰弱<br />
++ 检测怪兽攻击范围内的虫子<br />
++ 向哪个虫子开火<br />
++ 许多的子弹</p>
+<h4 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>敌人的生命值条</h4>
+<p>我们将使用两张图片来实现生命值条，一个深色的背景和一个稍微浅绿色的条，根据敌人的生命值来调整浅绿色条的比例。</p>
+<p>从Project Browser中拖拽Prefabs\Enemy到场景中。<br />
+然后拖拽Images\Objects\HealthBarBackground到Enemy上，使其成为Enemy的子节点。<br />
+在Inspector中, 设置HealthBarBackground的位置为(0, 1, -4)。</p>
+<p>然后，在 Project Browser中选中Images\Objects\HealthBar，并确保他的Pivot被设置为Left，然后在Hierarchy中添加它为Enemy的子节点，并设置它的位置为(-0.63, 1, -5)，设置X Scale为125。</p>
+<p>新建一个新的C#脚本，重命名为HealthBar，然后挂到HealthBar上，稍后，我们将调整生命条的长度。</p>
+<p>在Hierarchy中选中Enemy，确保它的位置为(20, 0, 0)。</p>
+<p>在Inspector面板的顶部，点击Apply按钮保存刚刚的修改。最后将Enemy从Hierarchy上删除。</p>
+<p><img alt="img" src="http://cdn1.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-07-at-11.37.12.png" /></p>
+<p>重复上面的步骤，给Prefabs\Enemy2加上生命值条。</p>
+<h4 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>调整生命值条（血条）的长度</h4>
+<p>在代码编辑器中打开HealthBar.cs，添加下面的变量：<br />
+<pre><code>public float maxHealth = 100; //敌人的最大生命值
+public float currentHealth = 100; //敌人的当前生命值
+private float originalScale; //记录生命值条的初始大小
+</code></pre><br />
+<code>maxHealth</code>记录敌人的最大生命值，<code>currentHealth</code>记录敌人当前的生命值，最后使用<code>originalScale</code>记录生命条的初始大小。</p>
+<p>在<code>Start()</code>方法中，给<code>originalScale</code>一个初始值：<br />
+<pre><code>void Start ()
+{
+    originalScale = gameObject.transform.localScale.x;
+}
+</code></pre><br />
+我们保存了<code>localScale.x</code>的值。</p>
+<p>在<code>Update()</code>方法中，通过下面的代码设置血条的大小：<br />
+<pre><code>void Update()
+{
+    Vector3 tmpScale = gameObject.transform.localScale;
+    tmpScale.x = currentHealth / maxHealth * originalScale;
+    gameObject.transform.localScale = tmpScale;
+}
+</code></pre></p>
+<p>首先，我们把<code>localScale</code>拷贝到了一个临时变量，因为我们将紧紧修改它的x的值，然后根据敌人现在的生命值计算新的x的值，最后将前面的临时变量赋值回<code>localScale</code>。<br />
+保存脚本文件，在Unity中运行游戏，我们将看到敌人的血条了，像下面这样：<br />
+<img alt="img" src="http://cdn4.raywenderlich.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-06-at-10.24.48.png" /></p>
+<blockquote>
+<p>原文地址: <a href="http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2">http://www.raywenderlich.com/107529/unity-tower-defense-tutorial-part-2</a></p>
+</blockquote></article></body></html>
