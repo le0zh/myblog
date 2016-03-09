@@ -95,4 +95,36 @@ function CounterD() {
 }
 ```
 
- 关于箭头函数的更多内容，请参考文档 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+关于箭头函数的更多内容，请参考文档 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+>本文是js tips系列，翻译自 https://github.com/loverajoel/jstips
+
+### 补充
+比如
+```
+var func = x => {
+  return x++;
+};
+```
+
+**在箭头函数里面，arguments没有定义**
+```
+console.log(arguments); // not defined
+```
+
+**同样可以使用typeof和instanceof**
+```
+func instanceof Function; // true
+typeof func; // function
+func.constructor == Function; // true
+```
+
+**尽管是function类型，但是不能作为构造函数**
+```
+var instance= new func(); // TypeError: func is not a constructor
+```
+
+**没有prototype**
+```
+func.prototype; // undefined
+```
