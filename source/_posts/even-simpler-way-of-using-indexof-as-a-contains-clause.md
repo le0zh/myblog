@@ -80,6 +80,17 @@ ES6中引入了新的方法[`includes()`](https://developer.mozilla.org/en-US/do
 
 >译注： 上面是指浏览器原生的对ES6的支持，可以使用Babel等转换工具将ES6代码转换为ES5的。
 
+#### 补充:
+为什么不能直接使用
+
+```
+if (someText.indexOf('javascript')) {
+  // 包含?
+}
+```
+
+判断呢，原因很简单，`indexOf`的返回值可能是0，也就是字符串开始的位置，而0会被认为是false。
+
 ---
 
 >本文是js tips系列，翻译自 https://github.com/loverajoel/jstips
