@@ -1,4 +1,4 @@
-title: (#17) nodejs中判断模块是直接被node调用的，还是通过require调用的
+title: (#17) nodejs中判断模块的被调用方式
 tags:
   - javascript
   - jstips
