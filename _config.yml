@@ -4,7 +4,7 @@
 
 # Site
 title: le0zh's blog
-subtitle: 梦想 行动 坚持
+subtitle: //DON'T PANIC
 description:
 author: le0zh
 language: zh-Hans
@@ -69,7 +69,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
