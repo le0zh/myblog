@@ -6,11 +6,11 @@ categories:
 date: 2017-01-11 09:52:12
 ---
 
-在[这里](http://le0zh.github.io/2016/10/19/private-npm-service-via-sinopia/)，我们介绍了如何使用sinopai来搭建自己的私有npm服务器。
+在[这篇文章中](http://le0zh.github.io/2016/10/19/private-npm-service-via-sinopia/)，我们介绍了如何使用Sinopia来搭建自己的私有npm服务器。
 工作中遇到了的一个常见需求，就是对于一些sdk包，需要控制其publish流程，同时只允许若干特定用户才能publish。
 
-这就需要用到sinpia中关于用户控制的配置部分了。
-来看看sinopia的配置文件中关于用户控制都有哪些。
+这就需要用到Sinopia中关于用户控制的配置部分了。
+来看看Sinopia的配置文件中关于用户控制都有哪些。
 
 <!-- more -->
 
@@ -42,10 +42,9 @@ admin:{SHA}fEqNdfer3Yq9h5ZUglD3CZJT4lBs=:autocreated 2017-01-10T09:43:22.204Z
 
 控制用户对特定包的权限（访问和发布）
 先说几个关键字:
-- $all : 所有用户
-- $authenticated ： 通过认证的用户（npm login）
-- $anonymous : 匿名用户
-
+- `$all` : 所有用户
+- `$authenticated` ： 通过认证的用户（npm login）
+- `$anonymous` : 匿名用户
 
 ```yaml
 # 配置权限管理
