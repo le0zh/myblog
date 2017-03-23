@@ -72,7 +72,7 @@ module.exports = {
 
 #### 准备发布到npm
 
-当eslint-config-mine准备好时，我们就可以准备发布了。
+当`eslint-config-mine`准备好时，我们就可以准备发布了。
 
 我们还应该在`package.json`中使用`peerDependencies`声明对`eslint`的依赖，推荐的做法是使用“>=”指定需要的eslint的最小版本：
 
@@ -83,24 +83,14 @@ peerDependencies: {
 ```
 
 发布之前，推荐使用`npm link`命令测试一下。做法如下：
-1. 在eslint-config-mine中，运行`npm link`
+1. 在`eslint-config-mine`中，运行`npm link`
 2. 在需要使用共享配置文件的项目中，运行`npm link eslint-config-mine`
 
-这样，在项目中就跟安装了eslint-config-mine一样直接使用了。
+这样，在项目中就跟安装了`eslint-config-mine`一样直接使用了。
 
 
 #### 使用共享配置文件
 
-Shareable configs are designed to work with the extends feature of .eslintrc files. Instead of using a file path for the value of extends, use your module name. For example:
-
-{
-    "extends": "eslint-config-myconfig"
-}
-You can also omit the eslint-config- and it will be automatically assumed by ESLint:
-
-{
-    "extends": "myconfig"
-}
 在具体的项目中，通过`.eslintrc`文件的`extends`特性使用共享的配置，直接使用npm包名即可，比如：
 
 ```
@@ -129,7 +119,7 @@ You can also omit the eslint-config- and it will be automatically assumed by ESL
 
 #### 一个npm包共享多个配置文件
 
-同时支持在eslint-config-mine包里，同时存放多个配置文件，然后在`extends`中指定。
+同时支持在`eslint-config-mine`包里，同时存放多个配置文件，然后在`extends`中指定。
 
 新建另外一个配置文件`my-special-config.js`:
 
