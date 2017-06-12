@@ -75,5 +75,5 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/le0zh/le0zh.github.io.git
+  repo: http://github.com/le0zh/le0zh.github.io.git
   branch: master
